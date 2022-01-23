@@ -13,9 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'net-smtp', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootsnap', '>= 1.4.4', require: false
-
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 group :development, :test do
   gem 'bullet' # N+1検知
