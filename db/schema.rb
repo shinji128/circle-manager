@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_093522) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "uuid"
+    t.string "uuid", null: false
     t.string "line_user_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
