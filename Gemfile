@@ -14,6 +14,7 @@ gem 'net-smtp', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'image_processing', '~> 1.2'
+gem 'slim-rails'
 
 group :development, :test do
   gem 'bullet' # N+1検知
