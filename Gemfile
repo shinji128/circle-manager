@@ -16,6 +16,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'image_processing', '~> 1.2'
 gem 'slim-rails'
 gem 'line-bot-api'
+gem 'sorcery'
 
 group :development, :test do
   gem 'bullet' # N+1検知

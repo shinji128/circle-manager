@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def new; end
+
   private
 
   def client
