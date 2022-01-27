@@ -1,14 +1,15 @@
 class OauthsController < ApplicationController
-  skip_before_action :require_login, raise: false
+  skip_before_action :require_login
 
   def oauth
     login_at(params[:provider])
   end
 
   def callback
-    provider = params[:provider]
-    # binding.pry
+    provider = auth_params[:provider]
+    binding.pry
     if @user = login_from(provider)
+      binding.pry
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
       begin
@@ -27,9 +28,9 @@ class OauthsController < ApplicationController
   #example for Rails 4: add private method below and use "auth_params[:provider]" in place of
   #"params[:provider] above.
 
-  # private
-  # def auth_params
-  #   params.permit(:code, :provider)
-  # end
+  private
+  def auth_params
+    params.permit(:code, :provider, :state)
+  end
 
 end

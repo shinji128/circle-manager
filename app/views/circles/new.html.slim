@@ -1,0 +1,15 @@
+.container
+  = form_with model: @circle, local: true do |f|
+    .form-group
+      = f.label :name
+      = f.text_field :name
+    .form-group
+      = f.label :introduction
+      = f.text_area :introduction
+    .form-group
+      = f.label :top_image
+      = f.file_field :top_image
+    .form-group
+      = f.label :other_images
+      = f.file_field :other_images, multiple: true
+    = f.submit
