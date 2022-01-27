@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   protect_from_forgery except: [:callback]
+  skip_before_action :require_login, only: %i[new callback]
 
   def callback
     body = request.body.read
