@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_104533) do
+ActiveRecord::Schema.define(version: 2022_01_27_144726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 2022_01_23_104533) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "affiliations", force: :cascade do |t|
+    t.string "uuid"
+    t.string "introduction"
+    t.integer "register_state"
+    t.bigint "user_id", null: false
+    t.bigint "circle_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["circle_id"], name: "index_affiliations_on_circle_id"
+    t.index ["user_id"], name: "index_affiliations_on_user_id"
+  end
+
   create_table "authentications", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "provider", null: false
@@ -50,6 +62,16 @@ ActiveRecord::Schema.define(version: 2022_01_23_104533) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+  end
+
+  create_table "circles", force: :cascade do |t|
+    t.string "uuid"
+    t.string "name"
+    t.string "introduction"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_circles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -62,4 +84,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_104533) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "affiliations", "circles"
+  add_foreign_key "affiliations", "users"
+  add_foreign_key "circles", "users"
 end

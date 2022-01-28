@@ -109,8 +109,8 @@ Rails.application.config.sorcery.configure do |config|
 
   config.line.key = Rails.application.credentials.dig(:line, :login_channel_id)
   config.line.secret = Rails.application.credentials.dig(:line, :login_channel_secret)
-  config.line.callback_url = 'https://circle-manager.herokuapp.com//oauth/callback?provider=line'
-  # config.line.callback_url = 'http://localhost:3000//oauth/callback?provider=line'
+  # config.line.callback_url = 'https://circle-manager.herokuapp.com//oauth/callback?provider=line'
+  config.line.callback_url = 'http://localhost:3000//oauth/callback?provider=line'
   config.line.bot_prompt = 'aggressive'
   config.line.scope = 'profile'
   config.line.user_info_mapping = {line_user_id: 'userId', name: 'displayName'}
