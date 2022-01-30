@@ -8,6 +8,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import '../stylesheets/application'
+import "./other_image_preview";
+import "./top_image_preview";
 
 Rails.start()
 Turbolinks.start()
