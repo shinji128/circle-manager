@@ -1,0 +1,19 @@
+#navArea
+  nav
+    .inner
+      ul
+        li
+          = link_to 'ログイン', auth_at_provider_path(:provider => :line)
+        li
+          = link_to 'トップページ', root_path
+        li
+          a href="#"  サークル一覧
+        li
+          a href="#"  イベント一覧
+        / li
+          / a href="#"  チームシャッフル
+  .toggle_btn
+    span
+    span
+    span
+  #mask
