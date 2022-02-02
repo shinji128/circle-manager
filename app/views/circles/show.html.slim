@@ -1,0 +1,39 @@
+.bg-blue-900.sticky.top-0.text-center.text-white
+  = @circle.name
+.py-4.bg-gray-200
+  createdat.text-gray-500
+  = @circle.established
+  - if @circle.top_image
+    topimagebox.flex.justify-center.py-3
+      = image_tag @circle.top_image.variant(gravity: :center, resize:"585x270^", crop:"585x270+0+0")
+  - if @circle.introduction
+    introduction.rounded-t.mb-0.px-1.py-1
+      p 〜紹介文〜
+      = @circle.introduction
+  - if @circle.other_images
+    #carouselExampleCaptions.carousel.slide.relative data-bs-ride="carousel"
+      .carousel-indicators.absolute.right-0.bottom-0.left-0.flex.justify-center.p-0.mb-4
+        - (1..@circle.other_images.count).each do |num|
+          - if num == 1
+            button.active aria-current="true" aria-label=("Slide 1") data-bs-slide-to="0" data-bs-target="#carouselExampleCaptions" type="button"
+          - else
+            button aria-label=("Slide #{num.to_s}") data-bs-slide-to="#{(num-1).to_s}" data-bs-target="#carouselExampleCaptions" type="button"
+      .carousel-inner.relative.w-full.overflow-hidden
+        - @circle.other_images.each_with_index do |image, index|
+          - if index.zero?
+            .carousel-item.active.relative.float-left.w-full
+              = image_tag image.variant(gravity: :center, resize:"400x150^", crop:"400x150+0+0"), class: "block w-full"
+          - else
+            .carousel-item.relative.float-left.w-full
+              = image_tag image.variant(gravity: :center, resize:"400x150^", crop:"400x150+0+0"), class: "block w-full"
+      button.carousel-control-prev.absolute.top-0.bottom-0.flex.items-center.justify-center.p-0.text-center.border-0.hover:outline-none.hover:no-underline.focus:outline-none.focus:no-underline.left-0 data-bs-slide="prev" data-bs-target="#carouselExampleCaptions" type="button"
+        span.carousel-control-prev-icon.inline-block.bg-no-repeat aria-hidden="true"
+        span.visually-hidden Previous
+      button.carousel-control-next.absolute.top-0.bottom-0.flex.items-center.justify-center.p-0.text-center.border-0.hover:outline-none.hover:no-underline.focus:outline-none.focus:no-underline.right-0 data-bs-slide="next" data-bs-target="#carouselExampleCaptions" type="button"
+        span.carousel-control-next-icon.inline-block.bg-no-repeat aria-hidden="true"
+        span.visually-hidden Next
+
+script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"
+link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" /
+link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" /
+link href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" rel="stylesheet" /
