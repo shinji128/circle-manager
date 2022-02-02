@@ -11,6 +11,11 @@ class CirclesController < ApplicationController
     end
   end
 
+  def show
+    @circle = Circle.find(params[:id])
+    @image_count = @circle.other_images.count
+  end
+
   private
 
   def circle_params

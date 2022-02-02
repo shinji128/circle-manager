@@ -17,6 +17,7 @@ gem 'image_processing', '~> 1.2'
 gem 'slim-rails'
 gem 'line-bot-api'
 gem 'sorcery'
+gem 'active_decorator'
 
 group :development, :test do
   gem 'bullet' # N+1検知
