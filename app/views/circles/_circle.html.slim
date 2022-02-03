@@ -1,0 +1,10 @@
+.focus:outline-none
+  = image_tag @circle.top_image, class: "focus:outline-none w-full"
+  .py-2.px-4.w-full.flex.justify-between.bg-indigo-700
+    p.focus:outline-none.text-sm.text-white.font-semibold.tracking-wide
+      = @circle.name
+    p.focus:outline-none.text-sm.text-white.font-semibold.tracking-wide
+      = @circle.established
+  .bg-white.px-3.lg:px-6.py-4.rounded-bl-3xl.rounded-br-3xl
+    p.focus:outline-none.text-gray-700.text-sm.pr-4.tracking-wide.mt-2
+      = @circle.introduction
