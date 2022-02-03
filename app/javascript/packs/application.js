@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import '../stylesheets/application'
 import '@fortawesome/fontawesome-free/js/all';
+import 'tw-elements';
 import "./other_image_preview";
 import "./top_image_preview";
 import "./header";
