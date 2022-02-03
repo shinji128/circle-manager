@@ -30,7 +30,9 @@ module.exports = {
   variants: {
     extend: {},
   },
+  content: ['./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
   plugins: [
-    require('@tailwindcss/line-clamp')
+    require('@tailwindcss/line-clamp'),
+    require('tw-elements/dist/plugin')
   ],
 }
