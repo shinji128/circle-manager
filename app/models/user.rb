@@ -9,8 +9,8 @@ class User < ApplicationRecord
   before_create :default_avatar
 
   def default_avatar
-    if !self.avatar.attached?
-      self.avatar.attach(io: File.open('app/assets/images/default_avatar.jpg'), filename: 'avatar_image.jpg')
+    if !avatar.attached?
+      avatar.attach(io: File.open('app/assets/images/default_avatar.jpg'), filename: 'avatar_image.jpg')
     end
   end
 end
