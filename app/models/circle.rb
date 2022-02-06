@@ -3,6 +3,7 @@ class Circle < ApplicationRecord
   has_many_attached :other_images
   belongs_to :user
   has_many :affiliations
+  has_many :affiliation_user, through: :affiliations, source: :user
 
   before_create :default_top_image
 
