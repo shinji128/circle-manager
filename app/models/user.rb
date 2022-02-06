@@ -4,6 +4,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :authentications
   has_one_attached :avatar
   has_many :circles
+  has_many :affiliations
+  has_many :affiliation_circles, through: :affiliations, source: :circle
 
   include UuidGenerator
   before_create :default_avatar

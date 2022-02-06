@@ -1,0 +1,15 @@
+.py-4.bg-gray-200
+  .text-center
+    = image_tag current_user.avatar, class: "rounded-full w-32 mb-4 mx-auto shadow-sm"
+    .text-xl.font-medium.leading-tight.mb-2
+      = current_user.name
+  - if @circles.present?
+    .px-2.py-2
+      h2.text-xl.underline
+       p 参加サークル一覧
+      .mx-auto.container.mt-2
+        .focus:outline-none aria-label=("Group of cards") tabindex="0"
+          div
+            .grid.sm:grid-cols-1.gap-8
+              - @circles.each do |circle|
+                = render 'mypages/mypage_circle', circle: circle
