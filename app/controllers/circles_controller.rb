@@ -20,6 +20,15 @@ class CirclesController < ApplicationController
     @image_count = @circle.other_images.count
   end
 
+  def circle_member
+    @circle = Circle.find(params[:id])
+    if @circle.affiliation_user.include?(current_user)
+      @affiations = @circle.affiliations.includes(:user).order(created_at: :desc)
+    else
+      flash.now[:notice] = 'サークルメンバーだけが閲覧できます'
+    end
+  end
+
   private
 
   def circle_params
