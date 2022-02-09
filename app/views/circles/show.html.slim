@@ -7,6 +7,7 @@
     .hidden
       input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(@circle)}"
     input onclick="copyToClipboard()" type="button" value="招待リンクをコピー"
+    = link_to 'イベント作成', new_circle_event_path(@circle)
   topimagebox.flex.justify-center.py-3
     = image_tag @circle.top_image.variant(gravity: :center, resize:"585x290^", crop:"585x290+0+0")
   - if @circle.affiliation_user.include?(current_user)

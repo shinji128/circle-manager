@@ -4,6 +4,7 @@ class Circle < ApplicationRecord
   belongs_to :user
   has_many :affiliations
   has_many :affiliation_user, through: :affiliations, source: :user
+  has_many :events
 
   before_create :default_top_image
 
