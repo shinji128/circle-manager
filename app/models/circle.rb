@@ -5,6 +5,7 @@ class Circle < ApplicationRecord
   has_many :affiliations
   has_many :affiliation_user, through: :affiliations, source: :user
   has_many :events
+  has_many :circle_roles
 
   before_create :default_top_image
 
