@@ -1,0 +1,33 @@
+section.py-1.bg-gray-100
+  .w-full.px-4.mx-auto.mt-6 class="lg:w-2/12"
+    .relative.flex.flex-col.min-w-0.break-words.w-full.mb-6.shadow-lg.rounded-lg.bg-bluegray-100.border-0
+      .rounded-t.bg-white.mb-0.px-6.py-6
+        .text-center.flex.justify-between
+          h6.text-blueGray-700.text-xl.font-bold
+            | 役割作成
+      .flex-auto.lg:py-5.pt-50
+        .flex.flex-wrap
+          .w-full.px-2
+            .relative
+              = form_with(model: [@circle, @circle_role], local: true) do |f|
+                .relative.py-2
+                  = f.fields_for 'circle_role_attributes[]', CircleRole.new do |i|
+                    #circle-role-form
+                      = i.label :name
+                      = i.text_field :name, class: "border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10"
+                    span.cursor-pointer.underline.hover:opacity-75 onclick="addHTML()" フォームを追加
+                = f.submit class: "px-4 py-2 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700 active:bg-yellow-200 focus:ring-yellow-300"
+
+javascript:
+  function addHTML() {
+    const circleRoleForm = document.getElementById('circle-role-form');
+    const inputFormClass = document.createElement('div');
+    inputFormClass.className = 'relative py-2'
+    const inputForm = document.createElement('input');
+    inputForm.className = "border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10"
+    inputForm.type = 'text'
+    inputForm.name = 'circle_role[circle_role_attributes][][name]'
+    inputForm.id = 'circle_role_circle_role_attributes__name'
+    circleRoleForm.appendChild(inputFormClass);
+    circleRoleForm.appendChild(inputForm);
+  };

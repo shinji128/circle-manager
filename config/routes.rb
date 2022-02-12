@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :circles, only: %i[index new create show] do
     resources :affiliations, only: %i[new create]
     resources :events, only: %i[new create]
+    resources :circle_roles, only: %i[new create]
   end
   resource :mypage, only: %i[show]
 end

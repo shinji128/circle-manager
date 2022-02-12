@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_08_141639) do
+ActiveRecord::Schema.define(version: 2022_02_09_143913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 2022_02_08_141639) do
     t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
+  create_table "circle_roles", force: :cascade do |t|
+    t.string "name"
+    t.bigint "circle_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["circle_id"], name: "index_circle_roles_on_circle_id"
+  end
+
   create_table "circles", force: :cascade do |t|
     t.string "uuid"
     t.string "name"
@@ -101,6 +109,7 @@ ActiveRecord::Schema.define(version: 2022_02_08_141639) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "affiliations", "circles"
   add_foreign_key "affiliations", "users"
+  add_foreign_key "circle_roles", "circles"
   add_foreign_key "circles", "users"
   add_foreign_key "events", "circles"
 end
