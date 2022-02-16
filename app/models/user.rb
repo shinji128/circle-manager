@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :circles
   has_many :affiliations
   has_many :affiliation_circles, through: :affiliations, source: :circle
+  has_many :event_roles
 
   include UuidGenerator
   before_create :default_avatar
