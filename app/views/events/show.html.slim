@@ -1,0 +1,61 @@
+.bg-blue-900.sticky.top-0.text-center.text-white
+  = @event.circle.name
+.py-10.px-2.bg-gray-200
+  .bg-white.rounded-lg
+    .p-2.mx-2
+      .border-b-4.border-gray-400.font-semibold
+        = @event.name
+      - if @event.event_at
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p 日時
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              = @event.event_at
+      - if @event.place
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p 場所
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              = @event.place
+      - if @event.event_fee
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p 費用
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              = @event.event_fee
+      - if @event.people_limit_num
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p 人数制限
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              = @event.people_limit_num
+      - if @event.limit_answer_at
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p 回答期限
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              = @event.limit_answer_at
+      - if @event.note
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p メモ
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              = @event.note
+      - if @event.event_roles
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p 役割
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              - @event.event_roles.each do |event_role|
+                = render 'event_role', event_role: event_role
+
+  .mt-3.bg-white.rounded-lg
+    .p-2.mx-2
+      = render 'attendance_form'
