@@ -18,6 +18,7 @@ gem 'slim-rails'
 gem 'line-bot-api'
 gem 'sorcery'
 gem 'active_decorator'
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'bullet' # N+1検知
