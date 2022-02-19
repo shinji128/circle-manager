@@ -14,6 +14,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+    @circle = @event.circle
+    @attendance = Attendance.new
+  end
+
   private
 
   def event_params

@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   get 'circle/:id/member' => 'circles#circle_member', :as => :member
   resources :circles, only: %i[index new create show] do
     resources :affiliations, only: %i[new create]
-    resources :events, only: %i[new create]
+    resources :events, only: %i[new create show] do
+      resources :attendances, only: %i[new create]
+    end
     resources :circle_roles, only: %i[new create]
   end
   resource :mypage, only: %i[show]
