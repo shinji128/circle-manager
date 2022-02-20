@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'oauth/callback' => 'oauths#callback'
   get 'oauth/:provider'=> 'oauths#oauth', :as => :auth_at_provider
   get 'circle/:id/member' => 'circles#circle_member', :as => :member
+  get 'circle/:id/events' => 'events#circle_events', :as => :circle_event_list
   resources :circles, only: %i[index new create show] do
     resources :affiliations, only: %i[new create]
     resources :events, only: %i[new create show] do

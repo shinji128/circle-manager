@@ -1,0 +1,9 @@
+.py-4.bg-gray-200
+  .px-2.py-2.mt-14
+    .text-xl.underline
+      p イベントリスト
+    .mx-auto.container.mt-2
+      .focus:outline-none aria-label=("Group of cards") tabindex="0"
+        .grid.sm:grid-cols-1.gap-8
+          - @events.each do |event|
+            = render 'circle_event', event: event
