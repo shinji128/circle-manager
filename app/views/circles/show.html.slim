@@ -3,15 +3,35 @@
 .py-4.bg-gray-200
   createdat.text-gray-500
   = @circle.established
-  - if @circle.affiliation_user.include?(current_user)
-    .hidden
-      input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(@circle)}"
-    input onclick="copyToClipboard()" type="button" value="招待リンクをコピー"
-    = link_to 'イベント作成', new_circle_event_path(@circle)
   topimagebox.flex.justify-center.py-3
     = image_tag @circle.top_image.variant(gravity: :center, resize:"585x290^", crop:"585x290+0+0")
   - if @circle.affiliation_user.include?(current_user)
-    = link_to 'メンバーリスト', member_path(@circle)
+    .grid.grid-cols-4.divide-x-0.divide-gray-400
+      .text-center
+        - if @circle.events
+          i.fas.fa-list-alt.fa-lg
+          .font-mono.whitespace-no-wrap.text-sm
+            p イベント一覧
+          / .grid.sm:grid-cols-1.gap-8
+          /   - @circle.events.each do |event|
+          /     = render 'events/event', event: event
+      .text-center
+        = link_to new_circle_event_path(@circle) do
+          i.fa.fa-calendar-plus.fa-lg
+          .font-mono.whitespace-no-wrap.text-sm
+            p イベント作成
+      .text-center
+        .hidden
+          input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(@circle)}"
+        = button_tag type: 'button', onclick: "copyToClipboard()"
+          i.fa.fa-user-plus.fa-lg
+        .font-mono.whitespace-no-wrap.text-sm
+          p 招待リンク
+      .text-center
+        = link_to member_path(@circle) do
+          i.fa.fa-users.fa-lg
+          .font-mono.whitespace-no-wrap.text-sm
+            p メンバー一覧
   - if @circle.introduction
     introduction.rounded-t.mb-0.px-1.py-1
       p 〜紹介文〜
