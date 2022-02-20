@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    attributes:
+      circle:
+        name: サークル名
+        introduction: 紹介文
+        top_image: トップ画像
+        other_images: その他の画像
