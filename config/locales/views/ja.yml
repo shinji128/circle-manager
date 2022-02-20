@@ -8,3 +8,8 @@ ja:
       submit: 設立する
     mypage:
       title: マイページ
+    show:
+      event_list: イベントリスト
+      new_event: イベント作成
+      new_affiliation: 招待リンク
+      member: メンバー
