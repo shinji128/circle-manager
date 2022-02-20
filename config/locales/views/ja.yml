@@ -1,0 +1,6 @@
+ja:
+  defaults:
+  circles:
+    new:
+      title: サークル設立
+      submit: 設立する
