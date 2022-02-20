@@ -1,6 +1,10 @@
 ja:
   defaults:
   circles:
+    index:
+      title: サークル一覧
     new:
       title: サークル設立
       submit: 設立する
+    mypage:
+      title: マイページ
