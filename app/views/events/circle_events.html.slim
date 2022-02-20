@@ -1,6 +1,11 @@
 .py-4.bg-gray-200
   .px-2.py-2.mt-14
-    .text-xl.underline
+    = link_to new_circle_event_path(@circle) do
+      .flex
+        i.fa.fa-plus-square.fa-lg
+        .ml-2.whitespace-no-wrap
+          p イベント作成
+    .mt-2.text-xl.underline
       p イベントリスト
     .mx-auto.container.mt-2
       .focus:outline-none aria-label=("Group of cards") tabindex="0"
