@@ -1,4 +1,14 @@
 class EventsController < ApplicationController
+
+  def circle_events
+    @circle = Circle.find(params[:id])
+    if @circle.affiliation_user.include?(current_user)
+      @events = @circle.events.order(event_at: :desc)
+    else
+      flash.now[:notice] = 'サークルメンバーだけが閲覧できます'
+    end
+  end
+
   def new
     @circle = Circle.find(params[:circle_id])
     @event_form = EventForm.new

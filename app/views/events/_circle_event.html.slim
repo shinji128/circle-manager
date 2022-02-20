@@ -1,0 +1,9 @@
+.focus:outline-none
+  div id="event-id-#{event.id}"
+    = link_to circle_event_path(event)
+      .bg-white.flex.p-2.space-x-2.items-center.shadow-xl.max-w-sm.rounded-md
+        .column
+          div.font-semibold.text-xl
+            = event.name
+          p.mt-1.text-black.text-sm.cursor-pointer.line-clamp-3
+            = event.event_at

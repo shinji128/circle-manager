@@ -9,29 +9,27 @@
     .grid.grid-cols-4.divide-x-0.divide-gray-400
       .text-center
         - if @circle.events
-          i.fas.fa-list-alt.fa-lg
-          .font-mono.whitespace-no-wrap.text-sm
-            p イベント一覧
-          / .grid.sm:grid-cols-1.gap-8
-          /   - @circle.events.each do |event|
-          /     = render 'events/event', event: event
+          = link_to circle_event_list_path(@circle) do
+            i.fas.fa-list-alt.fa-lg
+            .font-mono.whitespace-no-wrap.text-sm
+              = t('.event_list')
       .text-center
         = link_to new_circle_event_path(@circle) do
           i.fa.fa-calendar-plus.fa-lg
           .font-mono.whitespace-no-wrap.text-sm
-            p イベント作成
+            = t('.new_event')
       .text-center
         .hidden
           input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(@circle)}"
         = button_tag type: 'button', onclick: "copyToClipboard()"
           i.fa.fa-user-plus.fa-lg
         .font-mono.whitespace-no-wrap.text-sm
-          p 招待リンク
+          = t('.new_affiliation')
       .text-center
         = link_to member_path(@circle) do
           i.fa.fa-users.fa-lg
           .font-mono.whitespace-no-wrap.text-sm
-            p メンバー一覧
+            = t('.member')
   - if @circle.introduction
     introduction.rounded-t.mb-0.px-1.py-1
       p 〜紹介文〜
