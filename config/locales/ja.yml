@@ -1,0 +1,7 @@
+ja:
+  enums:
+    attendance:
+      state:
+        present: 未定
+        absent: 出席
+        undecided: 欠席

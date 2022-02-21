@@ -9,6 +9,14 @@ class AttendancesController < ApplicationController
     end
   end
 
+  def update
+    @event = Event.find(params[:event_id])
+    @attendance = current_user.attendances.find_by(event_id: @event.id)
+    if @attendance.update(attendance_params)
+      redirect_to request.referer
+    end
+  end
+
   private
   def attendance_params
     params.require(:attendance).permit(:state, :comment).merge(event_id: @event.id)

@@ -18,6 +18,7 @@ gem 'slim-rails'
 gem 'line-bot-api'
 gem 'sorcery'
 gem 'active_decorator'
+gem 'enum_help'
 gem 'rails-i18n'
 
 group :development, :test do
