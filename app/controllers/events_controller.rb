@@ -28,6 +28,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @circle = @event.circle
     @attendance = Attendance.new
+    @set_attendance = Attendance.find_by(user_id: current_user.id, event_id: @event.id)
   end
 
   private
