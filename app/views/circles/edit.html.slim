@@ -1,0 +1,45 @@
+section.py-1.bg-gray-100
+  .w-full.px-4.mx-auto.mt-6 class="lg:w-2/12"
+    .relative.flex.flex-col.min-w-0.break-words.w-full.mb-6.shadow-lg.rounded-lg.bg-bluegray-100.border-0
+      .rounded-t.bg-white.mb-0.px-6.py-6
+        .text-center.flex.justify-between
+          h6.text-blueGray-700.text-xl.font-bold
+            = t('.title')
+      .flex-auto.lg:py-10.pt-50
+        .flex.flex-wrap
+          .w-full.px-4
+            .relative.w-full.mb-5
+              = form_with model: @circle, local: true do |f|
+                = f.label :name
+                = f.text_field :name, class: "border-0 px-3 py-3 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                .relative.w-full.mb-0.py-2
+                  = f.label :introduction
+                  = f.text_area :introduction, class: "border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10", style: "height: 91px;"
+                .relative.w-full.mb-0.py-2
+                  = f.label :top_image
+                  = f.file_field :top_image
+                - if @circle.top_image
+                  = f.check_box :top_image_id, {}, @circle.top_image.id, false
+                  = image_tag @circle.top_image, size:"100x100", class: 'rounded-lg'
+
+                #new-image.mt-3
+                = f.label :other_images
+                .circle-otherimages-container
+                  .prev-content
+                  .label-content.mx-auto
+                    label#label-box-0.label-box for="other_image_0"
+                      pre.label-box__text-visible 画像アップロード
+                  .hidden-content
+                    = f.fields_for :other_images do |i|
+                      = i.file_field :other_image, class: "hidden-field", id: "other_image_0", name: "circle[other_images][]"
+                      input#other_image_1.hidden-field name="circle[other_images][]" type="file" /
+                      input#other_image_2.hidden-field name="circle[other_images][]" type="file" /
+                      input#other_image_3.hidden-field name="circle[other_images][]" type="file" /
+                      input#other_image_4.hidden-field name="circle[other_images][]" type="file" /
+                    - if @circle.other_images.present?
+                      p 現在登録されている画像
+                      p （削除するものはチェックしてください）
+                      - @circle.other_images.each do |other_image|
+                        = f.check_box :other_image_ids, {multiple: true}, other_image.id, false
+                        = image_tag other_image, size:"100x100", class: 'rounded-lg'
+                = f.submit t('.submit'), class: "px-4 py-2 mt-3 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700 active:bg-yellow-200 focus:ring-yellow-300"

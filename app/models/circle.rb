@@ -8,10 +8,15 @@ class Circle < ApplicationRecord
   has_many :circle_roles
 
   before_create :default_top_image
+  before_update :default_top_image
 
   def default_top_image
     if !top_image.attached?
       top_image.attach(io: File.open('app/assets/images/default_top_image.jpg'), filename: 'default_top_image.jpg')
     end
+  end
+
+  def circle_member?(current_user)
+    self.affiliations.pluck(:user_id).include?(current_user.id)
   end
 end
