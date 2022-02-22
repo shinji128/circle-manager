@@ -19,8 +19,10 @@ section.py-1.bg-gray-100
                   = f.label :top_image
                   = f.file_field :top_image
                 - if @circle.top_image
-                  = f.check_box :top_image_id, {}, @circle.top_image.id, false
-                  = image_tag @circle.top_image, size:"100x100", class: 'rounded-lg'
+                  .flex.mb-3.justify-center.items-center
+                    = image_tag @circle.top_image, size:"100x100", class: 'rounded-lg'
+                    .ml-5
+                      = f.check_box :top_image_id, {}, @circle.top_image.id, false
 
                 #new-image.mt-3
                 = f.label :other_images
@@ -36,10 +38,13 @@ section.py-1.bg-gray-100
                       input#other_image_2.hidden-field name="circle[other_images][]" type="file" /
                       input#other_image_3.hidden-field name="circle[other_images][]" type="file" /
                       input#other_image_4.hidden-field name="circle[other_images][]" type="file" /
-                    - if @circle.other_images.present?
-                      p 現在登録されている画像
-                      p （削除するものはチェックしてください）
-                      - @circle.other_images.each do |other_image|
-                        = f.check_box :other_image_ids, {multiple: true}, other_image.id, false
-                        = image_tag other_image, size:"100x100", class: 'rounded-lg'
+                    .text-center
+                      - if @circle.other_images.present?
+                        p 現在登録されている画像
+                        p （削除するものはチェックしてください）
+                        - @circle.other_images.each do |other_image|
+                          .flex.mb-3.justify-center.items-center
+                            = image_tag other_image, size:"100x100", class: 'rounded-lg'
+                            .ml-5
+                              = f.check_box :other_image_ids, {multiple: true}, other_image.id, false
                 = f.submit t('.submit'), class: "px-4 py-2 mt-3 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700 active:bg-yellow-200 focus:ring-yellow-300"
