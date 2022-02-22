@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'circle/:id/events' => 'events#circle_events', :as => :circle_event_list
   resources :circles, only: %i[new create edit update index show] do
     resources :affiliations, only: %i[new create]
-    resources :events, only: %i[new create show] do
+    resources :events, only: %i[new create edit update show] do
       resources :attendances, only: %i[new create update]
     end
     resources :circle_roles, only: %i[new create]
