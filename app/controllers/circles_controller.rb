@@ -15,6 +15,35 @@ class CirclesController < ApplicationController
     end
   end
 
+  def edit
+    @circle = Circle.find(params[:id])
+    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+  end
+
+  def update
+    @circle = Circle.find(params[:id])
+    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    ActiveRecord::Base.transaction do
+      # binding.pry
+      if params[:circle][:top_image_id].to_i == @circle.top_image.id
+        @circle.top_image.purge
+      end
+
+      if params[:circle][:other_image_ids]
+        params[:circle][:other_image_ids].each do |other_image_id|
+          other_image = @circle.other_images.find(other_image_id)
+          other_image.purge
+        end
+      end
+
+      if @circle.update(circle_params)
+        redirect_to circle_path
+      else
+        render :edit
+      end
+    end
+  end
+
   def show
     @circle = Circle.find(params[:id])
   end

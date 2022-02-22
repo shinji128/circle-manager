@@ -32,6 +32,7 @@
           .whitespace-no-wrap.text-xs
             = t('.new_role')
       .text-center
+        = link_to edit_circle_path(@circle) do
           i.fa.fa-pencil-alt.fa-lg
           .whitespace-no-wrap.text-xs
             = t('.edit_circle')

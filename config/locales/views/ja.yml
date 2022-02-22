@@ -14,3 +14,6 @@ ja:
       event_list: イベント
       new_role: 役割作成
       edit_circle: サークル編集
+    edit:
+      title: サークル編集
+      submit: 更新する
