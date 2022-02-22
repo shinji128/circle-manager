@@ -24,7 +24,6 @@ class CirclesController < ApplicationController
     @circle = Circle.find(params[:id])
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
     ActiveRecord::Base.transaction do
-      # binding.pry
       if params[:circle][:top_image_id].to_i == @circle.top_image.id
         @circle.top_image.purge
       end

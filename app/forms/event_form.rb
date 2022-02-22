@@ -4,6 +4,7 @@ class EventForm
 
   attribute :event
   attribute :event_role
+  attribute :event_roles
   attribute :name, :string
   attribute :place, :string
   attribute :event_fee, :integer
@@ -15,6 +16,15 @@ class EventForm
   attribute :circle_id, :integer
   attribute :user_id, :integer
 
+
+  delegate :persisted?, to: :@event
+
+  def initialize(attributes = nil, event: Event.new)
+    @event = event
+    attributes ||= default_attributes
+    super(attributes)
+  end
+
   def save
     return false if invalid?
 
@@ -23,6 +33,21 @@ class EventForm
       event.event_roles.create!(name: r["name"], user_id: r["user_id"].to_i)
     end
     true
+  end
+
+  def update
+    ActiveRecord::Base.transaction do
+      if event_role.present?
+        event_role.each do |r|
+          @event.event_roles.create!(name: r["name"], user_id: r["user_id"].to_i)
+        end
+      end
+      @event.update!(event_params)
+    end
+  end
+
+  def to_model
+    @event
   end
 
   private
@@ -38,6 +63,21 @@ class EventForm
       limit_answer_at: limit_answer_at,
       note: note,
       circle_id: circle_id
+    }
+  end
+
+  def default_attributes
+    {
+      name: @event.name,
+      place: @event.place,
+      event_fee: @event.event_fee,
+      event_at: @event.event_at,
+      event_time: @event.event_time,
+      people_limit_num: @event.people_limit_num,
+      limit_answer_at: @event.limit_answer_at,
+      note: @event.note,
+      circle_id: @event.circle_id,
+      event_roles: @event.event_roles
     }
   end
 end

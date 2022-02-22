@@ -45,6 +45,29 @@
                   <p class="w-full">役割</p>
                   <p class="w-full">担当</p>
                 </div>
+                <div class="event_role">
+                  <% if @event.event_roles.present?%>
+                    <p>現在登録されている役割</p>
+                    <p>（削除するものはチェックしてください）</p>
+                    <% @event.event_roles.each do |event_role| %>
+                      <div class="flex-col">
+                        <div class="flex">
+                          <div class="border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10">
+                            <%= event_role.name %>
+                          </div>
+                          <div class="border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10">
+                            <%= event_role.user.name %>
+                          </div>
+                        </div>
+                        <div class="mt-5">
+                        <div>
+                          <%= f.check_box :event_roles_ids, {multiple: true}, event_role.id, false %>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+
+                </div>
                 <div id="event-role"></div>
                 <div class="relative py-2">
                   <div class="cursor-pointer underline hover:opacity-75" onclick='addForm(event)'> フォームを追加</div>
