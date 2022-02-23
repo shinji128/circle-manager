@@ -9,7 +9,7 @@ class OauthsController < ApplicationController
     provider = params[:provider]
     # binding.pry
     if @user = login_from(provider)
-      redirect_to request.referer , :notice => "Logged in from #{provider.titleize}!"
+      redirect_to request.referer, :notice => "Logged in from #{provider.titleize}!"
     else
       begin
         @user = create_from(provider)
