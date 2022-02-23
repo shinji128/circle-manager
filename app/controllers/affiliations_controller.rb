@@ -9,9 +9,9 @@ class AffiliationsController < ApplicationController
       @affiliation = @circle.affiliations.new(circle_id: @circle.id, user_id: current_user.id)
       if !Affiliation.find_by(user_id: current_user.id, circle_id: @circle.id)
         @affiliation.save
-        redirect_to circle_path(@circle) #フラッシュメッセージ @circle.nameに参加しました
+        redirect_to circle_path(@circle) #flash @circle.nameに参加しました
       else
-        redirect_to circle_path(@circle) #フラッシュメッセージ すでにメンバーです
+        redirect_to circle_path(@circle) #flash すでにメンバーです
       end
     else
       redirect_to auth_at_provider_path(:provider => :line)
