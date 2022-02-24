@@ -11,7 +11,7 @@ class CirclesController < ApplicationController
     @circle = current_user.circles.new(circle_params)
     if @circle.save
       Affiliation.create(user: current_user, circle: @circle)
-      redirect_to circle_path(@circle)
+      redirect_to circle_path(@circle), notice: 'サークルを設立しました'
     else
       render :new
     end
