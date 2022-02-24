@@ -10,8 +10,10 @@ section.py-1.bg-gray-100
           .w-full.px-4
             .relative.w-full.mb-5
               = form_with model: @circle, local: true do |f|
-                = f.label :name
-                = f.text_field :name, class: "border-0 px-3 py-3 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                = render 'shared/error_messages', object: f.object
+                .relative.w-full.mb-0.py-2
+                  = f.label :name
+                  = f.text_field :name, class: "border-0 px-3 py-3 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 .relative.w-full.mb-0.py-2
                   = f.label :introduction
                   = f.text_area :introduction, class: "border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10", style: "height: 91px;"

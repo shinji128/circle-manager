@@ -11,7 +11,9 @@ class CirclesController < ApplicationController
     @circle = current_user.circles.new(circle_params)
     if @circle.save
       Affiliation.create(user: current_user, circle: @circle)
-      redirect_to root_path
+      redirect_to circle_path(@circle)
+    else
+      render :new
     end
   end
 

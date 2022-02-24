@@ -44,14 +44,13 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
   end
 
   create_table "affiliations", force: :cascade do |t|
-    t.string "uuid"
     t.string "introduction"
-    t.integer "register_state"
     t.bigint "user_id", null: false
     t.bigint "circle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["circle_id"], name: "index_affiliations_on_circle_id"
+    t.index ["user_id", "circle_id"], name: "index_affiliations_on_user_id_and_circle_id", unique: true
     t.index ["user_id"], name: "index_affiliations_on_user_id"
   end
 
@@ -84,8 +83,8 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
   end
 
   create_table "circles", force: :cascade do |t|
-    t.string "uuid"
-    t.string "name"
+    t.string "uuid", null: false
+    t.string "name", null: false
     t.string "introduction"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

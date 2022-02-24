@@ -7,6 +7,9 @@ class Circle < ApplicationRecord
   has_many :events
   has_many :circle_roles
 
+  validates :name, presence: true
+  validates :introduction, length: { maximum: 65_535 }
+
   before_create :default_top_image
   before_update :default_top_image
 
