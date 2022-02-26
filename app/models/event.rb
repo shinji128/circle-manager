@@ -3,7 +3,6 @@ class Event < ApplicationRecord
   has_many :event_roles
   has_many :attendances
 
-  validates :uuid, uniqueness: true, presence: true
   validates :name, presence: true
 
   include UuidGenerator
