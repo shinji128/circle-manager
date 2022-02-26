@@ -16,7 +16,6 @@ class EventForm
   attribute :circle_id, :integer
   attribute :user_id, :integer
 
-
   delegate :persisted?, to: :@event
 
   def initialize(attributes = nil, event: Event.new)
@@ -28,9 +27,16 @@ class EventForm
   def save
     return false if invalid?
 
-    self.event = Event.create!(event_params)
-    event_role.each do |r|
-      event.event_roles.create!(name: r["name"], user_id: r["user_id"].to_i)
+    self.event = Event.new(event_params)
+    self.event.uuid = loop do
+      uuid = SecureRandom.uuid
+      break uuid unless Event.exists?(uuid: uuid)
+    end
+    self.event.save
+    if event_role
+      event_role.each do |r|
+        event.event_roles.create!(name: r["name"], user_id: r["user_id"].to_i)
+      end
     end
     true
   end

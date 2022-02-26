@@ -5,8 +5,6 @@ class Event < ApplicationRecord
 
   validates :name, presence: true
 
-  include UuidGenerator
-
   def attendance_answer?(current_user)
     self.attendances.pluck(:user_id).include?(current_user.id)
   end
