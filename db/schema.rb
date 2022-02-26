@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_circles_on_user_id"
+    t.index ["uuid"], name: "index_circles_on_uuid", unique: true
   end
 
   create_table "event_roles", force: :cascade do |t|
