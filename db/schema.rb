@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
   end
 
   create_table "attendances", force: :cascade do |t|
-    t.integer "state"
+    t.integer "state", null: false
     t.string "comment"
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
