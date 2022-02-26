@@ -10,7 +10,7 @@
     .grid.grid-cols-5.divide-x-0.divide-gray-400
       .text-center
         .hidden
-          input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(@circle)}"
+          input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(@circle.uuid)}"
         = button_tag type: 'button', onclick: "copyToClipboard()"
           i.fa.fa-user-plus.fa-lg
         .whitespace-no-wrap.text-xs
