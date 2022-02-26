@@ -9,9 +9,6 @@ class User < ApplicationRecord
   has_many :event_roles
   has_many :attendances
 
-  validates :uuid, uniqueness: true, presence: true
-  validates :line_user_id, uniqueness: true, presence: true
-
   include UuidGenerator
   before_create :default_avatar
 
