@@ -1,7 +1,8 @@
 class CreateEvents < ActiveRecord::Migration[6.1]
   def change
     create_table :events do |t|
-      t.string :name
+      t.string :uuid, null: false
+      t.string :name, null: false
       t.string :place
       t.integer :event_fee
       t.datetime :event_at
@@ -13,5 +14,6 @@ class CreateEvents < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :events, :uuid, unique: true
   end
 end

@@ -103,7 +103,8 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "name"
+    t.string "uuid", null: false
+    t.string "name", null: false
     t.string "place"
     t.integer "event_fee"
     t.datetime "event_at"
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["circle_id"], name: "index_events_on_circle_id"
+    t.index ["uuid"], name: "index_events_on_uuid", unique: true
   end
 
   create_table "users", force: :cascade do |t|
