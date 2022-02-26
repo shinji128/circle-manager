@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     @circle = Circle.find(params[:circle_id])
     @event_form = EventForm.new(event_params)
     if @event_form.save
-      redirect_to root_path
+      redirect_to circle_event_path(@circle, @event)
     else
       render :new
     end
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
   def edit
     @circle = Circle.find(params[:circle_id])
     @event = @circle.events.find(params[:id])
-    redirect_to circle_event_path(@circle, @event) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
     @event_form = EventForm.new(event: @event)
   end
 
