@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
   end
 
   create_table "circle_roles", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "circle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
   end
 
   create_table "event_roles", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
