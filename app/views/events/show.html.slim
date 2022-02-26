@@ -13,7 +13,7 @@
               p 日時
             .p-2.font-mono.whitespace-no-wrap.text-black
               = @event.event_at
-      - if @event.place
+      - if @event.place.present?
         .mx-2.border-b-2.border-gray-400
           .flex
             .p-2.font-mono.whitespace-no-wrap.text-gray-600
@@ -41,14 +41,14 @@
               p 回答期限
             .p-2.font-mono.whitespace-no-wrap.text-black
               = @event.limit_answer_at
-      - if @event.note
+      - if @event.note.present?
         .mx-2.border-b-2.border-gray-400
           .flex
             .p-2.font-mono.whitespace-no-wrap.text-gray-600
               p メモ
             .p-2.font-mono.whitespace-no-wrap.text-black
               = @event.note
-      - if @event.event_roles
+      - if @event.event_roles.present?
         .mx-2.border-b-2.border-gray-400
           .flex
             .p-2.font-mono.whitespace-no-wrap.text-gray-600
