@@ -20,6 +20,7 @@ gem 'sorcery'
 gem 'active_decorator'
 gem 'enum_help'
 gem 'rails-i18n'
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'bullet' # N+1検知
