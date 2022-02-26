@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["line_user_id", "uuid"], name: "index_users_on_line_user_id_and_uuid", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
