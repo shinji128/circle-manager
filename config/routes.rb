@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'circle/:id/events' => 'events#circle_events', :as => :circle_event_list
   get 'circle/:uuid/affiliations' => 'affiliations#new', :as => :new_circle_affiliation
   post 'circle/:uuid/affiliations' => 'affiliations#create', :as => :circle_affiliations
+  get 'event/:id/shuffle' => 'events#shuffle', :as => :shuffle
 
   resources :circles, only: %i[new create edit update index show] do
     resources :events, only: %i[new create edit update show] do
