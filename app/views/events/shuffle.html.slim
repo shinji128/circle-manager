@@ -1,0 +1,21 @@
+.bg-blue-900.sticky.top-0.text-center.text-white
+  = @event.name
+.py-10.px-2.bg-gray-200
+  .flex.justify-center.mb-2
+    .court-lh-1
+      .bg-green-600.border-solid.border-b-2.border-white.w-40.h-20
+        #court-lhup-1
+      .bg-green-600.border-solid.border-t-2.border-white.w-40.h-20
+        #court-lhlo-1
+    .court-c-1
+      .bg-green-600.border-solid.border-l-2.border-r-2.border-white.w-10.h-40
+    .court-rh-1
+      .bg-green-600.border-solid.border-b-2.border-white.w-40.h-20
+        #court-rhup-1
+      .bg-green-600.border-solid.border-t-2.border-white.w-40.h-20.text-sm.flex.justify-center
+        #court-rhlo-1.m-auto.
+
+  .flex.justify-center.flex-wrap
+    - @event.attendances.each do |i|
+      .bg-blue-700.text-white.rounded-full.py-2.px-4.m-1
+        = i.user.name

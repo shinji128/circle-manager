@@ -56,6 +56,11 @@ class EventsController < ApplicationController
     @set_attendance = Attendance.find_by(user_id: current_user.id, event_id: @event.id)
   end
 
+  def shuffle
+    @event = Event.find(params[:id])
+    @members = @event.attendances
+  end
+
   private
 
   def event_params
