@@ -13,6 +13,7 @@ import 'tw-elements';
 import "./other_image_preview";
 import "./top_image_preview";
 import "./header";
+import "./shuffle";
 
 Rails.start()
 Turbolinks.start()

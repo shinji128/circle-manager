@@ -58,14 +58,13 @@ class EventsController < ApplicationController
 
   def shuffle
     @event = Event.find(params[:id])
-    members = {}
+    @members = {}
     member_id = 1
     @event.attendances.each do |i|
       hoge = { member_id => { 'name' => i.user.name, 'play_count' => 0 } }
-      members.merge!(hoge)
+      @members.merge!(hoge)
       member_id += 1
     end
-    render json: members, status: 400
   end
 
   private
