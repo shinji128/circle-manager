@@ -26,13 +26,15 @@ if (document.URL.match(/shuffle/)) {
 
     console.log(member[1].name)
     const hoge = document.getElementById('court-rhlo-1')
-    function buildHTML(i) {
+
+    const buildHTML = (i) => {
       const html = `<div class= "bg-blue-700 text-white rounded-full py-2 px-4 m-auto">
                       <div class="member text-center">${i}</div>
                     </div>`
       return html;
     }
-    function addHTML() {
+
+    const addHTML = () => {
       hoge.insertAdjacentHTML('afterend', buildHTML(member[1].name))
     }
 
