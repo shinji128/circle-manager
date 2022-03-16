@@ -60,7 +60,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @members = {}
     member_id = 1
-    @event.attendances.each do |i|
+    @event.attendances.absent.each do |i|
       hoge = { member_id => { 'name' => i.user.name, 'play_count' => 0 } }
       @members.merge!(hoge)
       member_id += 1
