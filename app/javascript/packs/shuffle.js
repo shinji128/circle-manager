@@ -6,12 +6,12 @@ if (document.URL.match(/shuffle/)) {
 
     /////数字だけの配列定義 0〜memberのオブジェクト数
     const arrayNumber = []
-    for (let i = 0; i < memberCount + 1; i++) {
+    for (let i = 0; i < memberCount; i++) {
       arrayNumber.push(i)
     }
 
     //////シャッフル関数 arrayNumberの数字をシャッフル
-    const shuffleArray = function () {
+    const shuffleArray = () => {
       for (let i = memberCount; i > 0; i--) {
         const randomNum = Math.floor(Math.random() * i);
         let tmp = arrayNumber[i - 1];
@@ -19,6 +19,10 @@ if (document.URL.match(/shuffle/)) {
         arrayNumber[randomNum] = tmp;
       }
     }
+    document.querySelector('#btn-shuffle').addEventListener('click', function () {
+      shuffleArray();
+      console.log(arrayNumber)
+    });
 
     console.log(member[1].name)
     const hoge = document.getElementById('court-rhlo-1')
