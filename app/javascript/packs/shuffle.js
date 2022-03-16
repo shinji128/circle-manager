@@ -19,7 +19,7 @@ if (document.URL.match(/shuffle/)) {
         arrayNumber[randomNum] = tmp;
       }
     }
-    document.querySelector('#btn-shuffle').addEventListener('click', function () {
+    document.querySelector('#btn-shuffle').addEventListener('click', () => {
       shuffleArray();
       console.log(arrayNumber)
     });
