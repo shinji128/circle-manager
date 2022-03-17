@@ -1,7 +1,7 @@
 if (document.URL.match(/shuffle/)) {
   document.addEventListener('turbolinks:load', () => {
-    const memberArray = document.getElementById('member');
-    const member = JSON.parse(memberArray.getAttribute('data-member-status'));
+    const memberElement = document.getElementById('member');
+    const member = JSON.parse(memberElement.getAttribute('data-member-status'));
     const memberCount = Object.keys(member).length
 
     /////数字だけの配列定義 0〜memberのオブジェクト数
@@ -37,7 +37,7 @@ if (document.URL.match(/shuffle/)) {
       courtBlock.insertAdjacentHTML('beforeend', memberHtml(member[arrayNumber].name))
     }
 
-    document.querySelector('#btn-shuffle').addEventListener('click', () => {
+    const shuffle = () => {
       if (document.getElementById('play-member')) {
         for (let i = 1; i < 5; i++) {
           resetCourtBlock(i)
@@ -47,6 +47,9 @@ if (document.URL.match(/shuffle/)) {
       for (let i = 0; i < 4; i++) {
         buildMemberHtml(i, arrayNumber[i])
       }
-    });
+    }
+
+    document.getElementById('btn-shuffle').addEventListener('click', shuffle);
+
   });
 }
