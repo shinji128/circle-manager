@@ -1,19 +1,14 @@
 .bg-blue-900.sticky.top-0.text-center.text-white
   = @event.name
 .py-10.px-2.bg-gray-200
-  .flex.justify-center.mb-2
-    .court-lh-1
-      .bg-green-600.border-solid.border-b-2.border-white.w-40.h-20.flex.justify-center
-        #court-lhup-1
-      .bg-green-600.border-solid.border-t-2.border-white.w-40.h-20.flex.justify-center
-        #court-lhlo-1
-    .court-c-1
-      .bg-green-600.border-solid.border-l-2.border-r-2.border-white.w-10.h-40.flex
-    .court-rh-1
-      .bg-green-600.border-solid.border-b-2.border-white.w-40.h-20.flex.justify-center
-        #court-rhup-1
-      .bg-green-600.border-solid.border-t-2.border-white.w-40.h-20.flex.justify-center
-        #court-rhlo-1
+  #court-1.court
+    .court-lh
+      #court-block-1.court-block.lhup
+      #court-block-2.court-block.lhlo
+    .court-center
+    .court-rh
+      #court-block-3.court-block.rhup
+      #court-block-4.court-block.rhlo
   button#btn-shuffle シャッフル
   .flex.justify-center.flex-wrap
       - @event.attendances.each do |i|
