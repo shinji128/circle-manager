@@ -61,8 +61,8 @@ class EventsController < ApplicationController
     @members = {}
     member_id = 1
     @event.attendances.absent.each do |i|
-      hoge = { member_id => { 'name' => i.user.name, 'play_count' => 0 } }
-      @members.merge!(hoge)
+      member = { member_id => { 'name' => i.user.name, 'play_count' => 0, 'member_id' => member_id } }
+      @members.merge!(member)
       member_id += 1
     end
   end

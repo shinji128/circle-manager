@@ -10,9 +10,12 @@
       #court-block-3.court-block.rhup
       #court-block-4.court-block.rhlo
   button#btn-shuffle シャッフル
-  .flex.justify-center.flex-wrap
-      - @event.attendances.each do |i|
-        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-1
-          .member
-            = i.user.name
+  button#btn-done 確定
+  #members-list.flex.justify-center.flex-wrap
+    - for i in(1..@members.count) do
+      #member-list.bg-blue-700.text-white.rounded-full.py-2.px-4.m-1
+        div class="member-#{i}"
+          = @members[i]['name']
+          span class="play-count-#{i} rounded-full"
+            = @members[i]['play_count']
 #member data-member-status="#{@members.to_json}"
