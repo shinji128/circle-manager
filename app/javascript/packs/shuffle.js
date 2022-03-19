@@ -58,8 +58,29 @@ if (document.URL.match(/shuffle/)) {
       })
     }
 
+    const courtHtml = (i) => {
+      const html = `<div class="court" id="court-${i}">
+                          <div class="court-lh">
+                            <div class="court-block lhup" id="court-block-1"></div>
+                            <div class="court-block lhlo" id="court-block-2"></div>
+                          </div>
+                          <div class="court-center"></div>
+                          <div class="court-rh">
+                            <div class="court-block rhup" id="court-block-3"></div>
+                            <div class="court-block rhlo" id="court-block-4"></div>
+                          </div>`
+      return html;
+    }
+
+    const addCourtHtml = () => {
+      const courtCount = document.querySelectorAll('.court').length
+      const court = document.getElementById(`court-${courtCount}`)
+      court.insertAdjacentHTML('afterend', courtHtml(courtCount + 1))
+    }
+
     document.getElementById('btn-shuffle').addEventListener('click', shuffle);
     document.getElementById('btn-done').addEventListener('click', shuffleDone);
+    document.getElementById('btn-add-court').addEventListener('click', addCourtHtml);
 
   });
 }
