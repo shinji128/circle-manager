@@ -4,16 +4,6 @@ if (document.URL.match(/shuffle/)) {
     const member = JSON.parse(memberElement.getAttribute('data-member-status'));
     const memberCount = Object.keys(member).length
 
-    const memberListHtml = (member) => {
-      const html = `<div class="bg-blue-700 text-white rounded-full py-2 px-4 m-1 id="member-list">
-                      <div class="member-${member.member_id}>
-                        ${member.name}
-                        <span play-count rounded-full>${member.play_count}</span>
-                      </div>
-                    </div>`
-      return html;
-    }
-
     /////memberのindex配列
     const arrayMemberIndex = []
     for (let i = 1; i < memberCount + 1; i++) {
