@@ -14,17 +14,6 @@ if (document.URL.match(/shuffle/)) {
       return html;
     }
 
-    const buildMemberListHtml = () => {
-      for (let i = 1; i < memberCount + 1; i++) {
-        memberListHtml(member[i])
-      }
-    }
-
-    const resetMemberListHtml = () => {
-      const memberList = document.querySelectorAll('#member-list')
-      memberList.remove()
-    }
-
     /////memberのindex配列
     const arrayMemberIndex = []
     for (let i = 1; i < memberCount + 1; i++) {
