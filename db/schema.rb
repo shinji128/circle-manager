@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
     t.string "uuid", null: false
     t.string "name", null: false
     t.string "introduction"
+    t.integer "state", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
