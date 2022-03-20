@@ -1,6 +1,6 @@
 class CirclesController < ApplicationController
   def index
-    @circles = Circle.with_attached_top_image.order(created_at: :desc)
+    @circles = Circle.publish.with_attached_top_image.order(created_at: :desc)
   end
 
   def new
@@ -61,6 +61,6 @@ class CirclesController < ApplicationController
   private
 
   def circle_params
-    params.require(:circle).permit(:name, :introduction, :top_image, { other_images: [] })
+    params.require(:circle).permit(:name, :introduction, :state, :top_image, { other_images: [] })
   end
 end

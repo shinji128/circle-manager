@@ -4,6 +4,7 @@ class CreateCircles < ActiveRecord::Migration[6.1]
       t.string :uuid, null: false
       t.string :name, null: false
       t.string :introduction
+      t.integer :state, null: false
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
