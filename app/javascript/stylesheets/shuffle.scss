@@ -26,4 +26,8 @@
   .rhlo {
     @apply bg-green-600 border-solid border-t-2 border-white w-40 h-20 flex justify-center
   }
+
+  .shuffle-page-button {
+    @apply  text-white text-sm font-bold py-2 px-1 mx-1 rounded-full
+  }
 }

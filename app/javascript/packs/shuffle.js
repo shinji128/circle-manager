@@ -62,15 +62,16 @@ if (document.URL.match(/shuffle/)) {
 
     const courtHtml = (courtCount, courtBlockCount) => {
       const html = `<div class="court" id="court-${courtCount + 1}">
-                          <div class="court-lh">
-                            <div class="court-block lhup" id="court-block-${courtBlockCount + 1}"></div>
-                            <div class="court-block lhlo" id="court-block-${courtBlockCount + 2}"></div>
-                          </div>
-                          <div class="court-center"></div>
-                          <div class="court-rh">
-                            <div class="court-block rhup" id="court-block-${courtBlockCount + 3}"></div>
-                            <div class="court-block rhlo" id="court-block-${courtBlockCount + 4}"></div>
-                          </div>`
+                      <div class="court-lh">
+                        <div class="court-block lhup" id="court-block-${courtBlockCount + 1}"></div>
+                        <div class="court-block lhlo" id="court-block-${courtBlockCount + 2}"></div>
+                      </div>
+                      <div class="court-center"></div>
+                      <div class="court-rh">
+                        <div class="court-block rhup" id="court-block-${courtBlockCount + 3}"></div>
+                        <div class="court-block rhlo" id="court-block-${courtBlockCount + 4}"></div>
+                      </div>
+                    </div>`
       return html;
     }
 
@@ -81,9 +82,17 @@ if (document.URL.match(/shuffle/)) {
       court.insertAdjacentHTML('afterend', courtHtml(courtCount, courtBlockCount))
     }
 
+    const deleteCourtHtml = () => {
+      const courtCount = document.querySelectorAll('.court').length
+      if (courtCount >= 2) {
+        const courtId = document.getElementById(`court-${courtCount}`)
+        courtId.remove();
+      }
+    }
+
     document.getElementById('btn-shuffle').addEventListener('click', shuffle);
     document.getElementById('btn-done').addEventListener('click', shuffleDone);
     document.getElementById('btn-add-court').addEventListener('click', addCourtHtml);
-
+    document.getElementById('btn-delete-court').addEventListener('click', deleteCourtHtml);
   });
 }
