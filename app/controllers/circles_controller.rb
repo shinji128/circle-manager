@@ -1,4 +1,6 @@
 class CirclesController < ApplicationController
+  skip_before_action :require_login, only: %i[index show]
+
   def index
     @circles = Circle.publish.with_attached_top_image.order(created_at: :desc)
   end
