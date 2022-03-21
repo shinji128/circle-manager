@@ -48,7 +48,8 @@ Affiliation.create(
     { user_id: 8, circle_id: 1 },
     { user_id: 9, circle_id: 1 },
     { user_id: 10, circle_id: 1 },
-    { user_id: 11, circle_id: 1 }
+    { user_id: 11, circle_id: 1 },
+    { user_id: 1, circle_id: 2 }
   ]
 )
 
