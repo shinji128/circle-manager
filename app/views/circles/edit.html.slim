@@ -10,6 +10,7 @@ section.py-1.bg-gray-100
           .w-full.px-4
             .relative.w-full.mb-5
               = form_with model: @circle, local: true do |f|
+                = render 'shared/error_messages', object: f.object
                 .flex.relative.w-full.mb-0.py-2
                   .ml-3
                     = f.radio_button :state, :publish

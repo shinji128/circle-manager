@@ -2,5 +2,8 @@
   .mx-auto.container
     .focus:outline-none.mt-12.lg:mt-24 aria-label=("Group of cards") tabindex="0"
       div
-        .grid.sm:grid-cols-1.lg:grid-cols-3.gap-8
-          = render @circles
+        - if @circles.present?
+          .grid.sm:grid-cols-1.lg:grid-cols-3.gap-8
+            = render @circles
+        - else
+          p 表示できるサークルが存在しません
