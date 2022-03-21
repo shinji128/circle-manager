@@ -24,7 +24,9 @@ User.create(
 
 Circle.create(
   [
-    { name: 'バドミントンサークル', introduction: "みんなで楽しくバドミントンをしよう" , user_id: 1, }
+    { name: 'バドミントンサークル', introduction: "みんなで楽しくバドミントンをしよう" , user_id: 1, state: 0 },
+    { name: '公開テストサークル', introduction: "みんなで楽しくバドミントンをしよう" , user_id: 2, state: 0 },
+    { name: '非公開テストサークル', introduction: "みんなで楽しくバドミントンをしよう" , user_id: 3, state: 0 }
   ]
 )
 
