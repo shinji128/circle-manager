@@ -26,15 +26,17 @@ class EventsController < ApplicationController
 
   def edit
     @circle = Circle.find(params[:circle_id])
-    @event = @circle.events.find(params[:id])
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
-    @event_form = EventForm.new(event: @event)
+    if @circle.circle_member?(current_user)
+      @event = @circle.events.find(params[:id])
+      @event_form = EventForm.new(event: @event)
+    else
+      redirect_to root_path ,alert: 'サークルを設立しました'
   end
 
   def update
     @circle = Circle.find(params[:circle_id])
+    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
     @event = @circle.events.find(params[:id])
-    redirect_to circle_event_path(@circle, @event) if !@circle.circle_member?(current_user)
     @event_form = EventForm.new(event_params, event: @event)
     if params[:event][:event_roles_ids]
       params[:event][:event_roles_ids].each do |event_role_id|
