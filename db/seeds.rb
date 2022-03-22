@@ -32,7 +32,8 @@ Circle.create(
 
 Event.create(
   [
-    { name: '練習', circle_id: 1, uuid: 'b528c76a-4b37-28e1c1ca-da64'}
+    { name: '練習', circle_id: 1, uuid: 'b528c76a-4b37-28e1c1ca-da64'},
+    { name: '練習', circle_id: 3, uuid: 'b528c76a-4b37-28e1c1ca'}
   ]
 )
 
