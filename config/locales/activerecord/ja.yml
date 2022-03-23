@@ -2,7 +2,27 @@ ja:
   activerecord:
     attributes:
       circle:
+        state: 公開状態
         name: サークル名
         introduction: 紹介文
         top_image: トップ画像
         other_images: その他の画像
+      event:
+        name: イベント名
+        event_at: イベント日
+        event_time: 開始時間
+        place: 場所
+        event_fee: 会費(円)
+        people_limit_num: 人数上限(人)
+        limit_answer_at: 出欠回答期限
+        note: 備考欄
+  activemodel:
+    attributes:
+      event_form:
+        name: 'イベント名'
+        car_model: '型式'
+        car_number: '車のナンバー'
+        stole_location: '盗難場所'
+        contact: '目撃情報連絡先'
+        stole_time: '盗難日時'
+        images: '車の画像'
