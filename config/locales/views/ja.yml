@@ -17,3 +17,7 @@ ja:
     edit:
       title: サークル編集
       submit: 更新する
+  mypages:
+    edit:
+      title: マイページ編集
+      submit: 更新する

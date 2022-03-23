@@ -1,0 +1,25 @@
+section.py-1.bg-gray-100
+  .w-full.px-4.mx-auto.mt-6 class="lg:w-2/12"
+    .relative.flex.flex-col.min-w-0.break-words.w-full.mb-6.shadow-lg.rounded-lg.bg-bluegray-100.border-0
+      .rounded-t.bg-white.mb-0.px-6.py-6
+        .text-center.flex.justify-between
+          h6.text-blueGray-700.text-xl.font-bold
+            = t('.title')
+      .flex-auto.lg:py-10.pt-50
+        .flex.flex-wrap
+          .w-full.px-4
+            .relative.w-full.mb-5
+              = form_with model: @user, url: mypage_path, local: true do |f|
+                = render 'shared/error_messages', object: f.object
+                .flex.relative.w-full.mb-0.py-2
+                = f.label :name
+                = f.text_field :name, class: "border-0 px-3 py-3 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                .relative.w-full.mb-0.py-2
+                  = f.label :avatar
+                  = f.file_field :avatar
+                - if @user.avatar
+                  .flex.mb-3.justify-center.items-center
+                    = image_tag @user.avatar, size:"100x100", class: 'rounded-lg'
+                    .ml-5
+                      = f.check_box :avatar_id, {}, @user.avatar.id, false
+                = f.submit t('.submit'), class: "px-4 py-2 mt-3 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700 active:bg-yellow-200 focus:ring-yellow-300"
