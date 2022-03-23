@@ -1,6 +1,9 @@
 ja:
   activerecord:
     attributes:
+      user:
+        name: ユーザー名
+        avatar: ユーザー画像
       circle:
         state: 公開状態
         name: サークル名
