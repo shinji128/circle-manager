@@ -4,3 +4,13 @@
 @import 'other_image_preview';
 @import 'humburger';
 @import 'shuffle';
+
+@layer base {
+  .form-control {
+    @apply border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear duration-100
+  }
+
+  .form-submit {
+    @apply px-4 py-2 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700
+  }
+}

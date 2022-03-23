@@ -16,6 +16,8 @@ class EventForm
   attribute :circle_id, :integer
   attribute :user_id, :integer
 
+  validates :name, presence: true
+
   delegate :persisted?, to: :@event
 
   def initialize(attributes = nil, event: Event.new)
@@ -34,8 +36,8 @@ class EventForm
     end
     self.event.save
     if event_role
-      event_role.each do |r|
-        event.event_roles.create!(name: r["name"], user_id: r["user_id"].to_i)
+      event_role.each do |i|
+        event.event_roles.create!(name: i["name"], user_id: i["user_id"].to_i)
       end
     end
     true
@@ -44,8 +46,8 @@ class EventForm
   def update
     ActiveRecord::Base.transaction do
       if event_role.present?
-        event_role.each do |r|
-          @event.event_roles.create!(name: r["name"], user_id: r["user_id"].to_i)
+        event_role.each do |i|
+          @event.event_roles.create!(name: i["name"], user_id: i["user_id"].to_i)
         end
       end
       @event.update!(event_params)
