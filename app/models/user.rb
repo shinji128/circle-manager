@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   include UuidGenerator
   before_create :default_avatar
+  before_update :default_avatar
 
   def default_avatar
     if !avatar.attached?
