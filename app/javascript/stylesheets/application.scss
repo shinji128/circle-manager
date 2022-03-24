@@ -7,10 +7,31 @@
 
 @layer base {
   .form-control {
-    @apply border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear duration-100
+    @apply border-0 px-3 py-3 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150
   }
 
   .form-submit {
-    @apply px-4 py-2 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700
+    @apply px-4 py-2 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700 lg:w-2/12
   }
+
+  .background-form-1 {
+    @apply bg-gray-100 pb-11
+  }
+
+  .background-form-2 {
+    @apply w-full px-4 mx-auto mt-6
+  }
+
+  .background-form-3 {
+    @apply relative flex flex-col break-words w-full mb-6 shadow-lg rounded-lg bg-bluegray-100 border-0
+  }
+
+  .title-form-1 {
+    @apply rounded-t bg-white mb-0 px-6 py-6
+  }
+
+  .title-form-2 {
+    @apply text-center flex justify-between
+  }
+
 }
