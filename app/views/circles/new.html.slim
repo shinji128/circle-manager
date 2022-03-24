@@ -1,11 +1,11 @@
-section.py-1.bg-gray-100
-  .w-full.px-4.mx-auto.mt-6 class="lg:w-2/12"
-    .relative.flex.flex-col.min-w-0.break-words.w-full.mb-6.shadow-lg.rounded-lg.bg-bluegray-100.border-0
-      .rounded-t.bg-white.mb-0.px-6.py-6
-        .text-center.flex.justify-between
+.background-form-1
+  .background-form-2
+    .background-form-3
+      .title-form-1
+        .title-form-2
           h6.text-blueGray-700.text-xl.font-bold
             = t('.title')
-      .flex-auto.lg:py-10.pt-50
+      .flex-auto.pt-50
         .flex.flex-wrap
           .w-full.px-4
             .relative.w-full.mb-5
@@ -20,10 +20,10 @@ section.py-1.bg-gray-100
                     = f.label :unpublish, '非公開'
                 .relative.w-full.mb-0.py-2
                   = f.label :name
-                  = f.text_field :name, class: "border-0 px-3 py-3 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                  = f.text_field :name, class: "form-control"
                 .relative.w-full.mb-0.py-2
                   = f.label :introduction
-                  = f.text_area :introduction, class: "border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10", style: "height: 91px;"
+                  = f.text_area :introduction, class: "form-control", style: "height: 91px;"
                 .relative.w-full.mb-0.py-2
                   = f.label :top_image
                   = f.file_field :top_image
@@ -41,4 +41,4 @@ section.py-1.bg-gray-100
                       input#other_image_2.hidden-field name="circle[other_images][]" type="file" /
                       input#other_image_3.hidden-field name="circle[other_images][]" type="file" /
                       input#other_image_4.hidden-field name="circle[other_images][]" type="file" /
-                  = f.submit t('.submit'), class: "px-4 py-2 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700 active:bg-yellow-200 focus:ring-yellow-300"
+                  = f.submit t('.submit'), class: "form-submit active:bg-yellow-200 focus:ring-yellow-300"
