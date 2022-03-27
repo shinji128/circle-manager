@@ -4,5 +4,5 @@ class Attendance < ApplicationRecord
 
   validates :comment, length: { maximum: 65_535 }
 
-  enum state: { present: 0, absent: 1, undecided: 2 }
+  enum state: { present: 0, absent: 1, undecided: 2, no_exit: 3 }
 end

@@ -5,3 +5,4 @@ ja:
         present: 未定
         absent: 出席
         undecided: 欠席
+        no_exit: 未入力
