@@ -1,0 +1,35 @@
+.bg-blue-900.sticky.top-0.text-center.text-white
+  = @event.name
+.py-10.px-2.bg-gray-200
+  - if @matches.first.id.nil?
+    #court-1.court
+      .court-lh
+        #court-block-1.court-block.lhup
+        #court-block-2.court-block.lhlo
+      .court-center
+      .court-rh
+        #court-block-3.court-block.rhup
+        #court-block-4.court-block.rhlo
+  - else
+    - @matches.first(2).each do |match|
+      = render 'matches/court', match: match
+
+  = form_with(model: [@event.circle, @event, @play_num], local: true) do |f|
+    .flex.ml-3.justify-center
+      = f.number_field :play_num, value: @matches.count, class: "form-control w-20 mr-10"
+      = button_tag type: 'submit', class: "btn-shuffle shuffle-page-button bg-yellow-500 hover:bg-yellow-600" do
+        i.fas.fa-random.fa-lg
+        span シャッフル
+
+  .text-center.mt-5
+    = link_to match_decide_path(@event), class: "py-4 btn-shuffle shuffle-page-button bg-blue-700 hover:bg-blue-600" do
+      i.fas.fa-check.fa-lg.mr-3
+      span 確定
+
+  / #members-list.mt-3.flex.justify-center.flex-wrap
+  /   - for i in(1..@members.count) do
+  /     #member-list.bg-blue-700.text-white.rounded-full.py-2.px-4.m-1
+  /       div class="member-#{i}"
+  /         = @members[i]['name']
+  /         span class="play-count-#{i} rounded-full"
+  /           = @members[i]['play_count']
