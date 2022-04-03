@@ -1,7 +1,7 @@
 .bg-blue-900.sticky.top-0.text-center.text-white
   = @event.name
 .py-10.px-2.bg-gray-200
-  - if @matches.first.id.nil?
+  - if @matches.empty?
     #court-1.court
       .court-lh
         #court-block-1.court-block.lhup
