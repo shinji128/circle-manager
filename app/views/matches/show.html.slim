@@ -11,7 +11,7 @@
         #court-block-3.court-block.rhup
         #court-block-4.court-block.rhlo
   - else
-    - @matches.first(2).each do |match|
+    - @matches.each do |match|
       = render 'matches/court', match: match
 
   = form_with(model: [@event.circle, @event, @play_num], local: true) do |f|
