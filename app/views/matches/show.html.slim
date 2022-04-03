@@ -25,11 +25,3 @@
     = link_to match_decide_path(@event), class: "py-4 btn-shuffle shuffle-page-button bg-blue-700 hover:bg-blue-600" do
       i.fas.fa-check.fa-lg.mr-3
       span 確定
-
-  / #members-list.mt-3.flex.justify-center.flex-wrap
-  /   - for i in(1..@members.count) do
-  /     #member-list.bg-blue-700.text-white.rounded-full.py-2.px-4.m-1
-  /       div class="member-#{i}"
-  /         = @members[i]['name']
-  /         span class="play-count-#{i} rounded-full"
-  /           = @members[i]['play_count']

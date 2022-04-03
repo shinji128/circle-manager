@@ -44,5 +44,4 @@ class MatchesController < ApplicationController
     @match_results = @event.match_results
     @play_num = @event.matches.new
   end
-
 end

@@ -16,9 +16,4 @@ class Match < ApplicationRecord
   def user_d_name
     User.find(self.user_d).name
   end
-
-  # def user_a_name(match)
-  #   user = User.find(match.user_a)
-  #   user.name
-  # end
 end
