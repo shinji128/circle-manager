@@ -21,3 +21,6 @@ ja:
     edit:
       title: マイページ編集
       submit: 更新する
+  matches:
+    show:
+      submit: シャッフル

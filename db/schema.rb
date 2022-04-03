@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_144346) do
+ActiveRecord::Schema.define(version: 2022_03_28_144352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,28 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
     t.index ["uuid"], name: "index_events_on_uuid", unique: true
   end
 
+  create_table "match_results", force: :cascade do |t|
+    t.integer "user_a"
+    t.integer "user_b"
+    t.integer "user_c"
+    t.integer "user_d"
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_match_results_on_event_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "user_a"
+    t.integer "user_b"
+    t.integer "user_c"
+    t.integer "user_d"
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_matches_on_event_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "uuid", null: false
     t.string "line_user_id", null: false
@@ -141,4 +163,6 @@ ActiveRecord::Schema.define(version: 2022_02_16_144346) do
   add_foreign_key "event_roles", "events"
   add_foreign_key "event_roles", "users"
   add_foreign_key "events", "circles"
+  add_foreign_key "match_results", "events"
+  add_foreign_key "matches", "events"
 end

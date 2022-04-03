@@ -1,0 +1,21 @@
+div id="court-#{match.id}"
+  .court
+    .court-lh
+      #court-block-1.court-block.lhup
+        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
+          .text-center
+            = match.user_a_name
+      #court-block-2.court-block.lhlo
+        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
+          .text-center
+            = match.user_b_name
+    .court-center
+    .court-rh
+      #court-block-3.court-block.rhup
+        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
+          .text-center
+            = match.user_c_name
+      #court-block-4.court-block.rhlo
+        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
+          .text-center
+            = match.user_d_name
