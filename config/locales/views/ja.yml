@@ -1,5 +1,7 @@
 ja:
   defaults:
+    message:
+      delete_confirm: 本当に削除しますか？
   circles:
     index:
       title: サークル一覧

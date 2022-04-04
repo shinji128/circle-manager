@@ -1,10 +1,9 @@
 class Event < ApplicationRecord
   belongs_to :circle
-  has_many :event_roles
-  has_many :attendances
-  has_many :matches
-  has_many :match_counts
-  has_many :match_results
+  has_many :event_roles, dependent: :destroy
+  has_many :attendances, dependent: :destroy
+  has_many :matches, dependent: :destroy
+  has_many :match_results, dependent: :destroy
 
   validates :name, presence: true
 
