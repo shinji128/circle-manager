@@ -2,10 +2,10 @@ class Circle < ApplicationRecord
   has_one_attached :top_image
   has_many_attached :other_images
   belongs_to :user
-  has_many :affiliations
+  has_many :affiliations, dependent: :destroy
   has_many :affiliation_user, through: :affiliations, source: :user
-  has_many :events
-  has_many :circle_roles
+  has_many :events, dependent: :destroy
+  has_many :circle_roles, dependent: :destroy
 
   validates :name, presence: true
   validates :introduction, length: { maximum: 65_535 }

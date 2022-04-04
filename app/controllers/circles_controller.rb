@@ -54,6 +54,13 @@ class CirclesController < ApplicationController
     @circle = Circle.find(params[:id])
   end
 
+  def destroy
+    circle =Circle.find(params[:id])
+    redirect_to circle_path(circle) if !circle.circle_member?(current_user)
+    circle.destroy!
+    redirect_to root_path, notice: 'サークルを削除しました'
+  end
+
   def circle_member
     @circle = Circle.find(params[:id])
     if @circle.affiliation_user.include?(current_user)
