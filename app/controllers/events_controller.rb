@@ -59,7 +59,7 @@ class EventsController < ApplicationController
     event =Event.find(params[:id])
     redirect_to circle_path(event.circle) if !event.circle.circle_member?(current_user)
     event.destroy!
-    redirect_to circle_event_list_path(event.circle)
+    redirect_to circle_event_list_path(event.circle), notice: 'イベントを削除しました'
   end
 
   def shuffle
