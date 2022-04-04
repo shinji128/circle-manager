@@ -75,7 +75,10 @@
                 <div class="relative py-2">
                   <div class="cursor-pointer underline hover:opacity-75" onclick='addForm(event)'> フォームを追加</div>
                 </div>
-                <%= f.submit class: "form-submit" %>
+                <div class="flex justify-between">
+                  <%= f.submit class: "form-submit" %>
+                  <%= link_to '削除', circle_event_path(@circle, @event), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', method: :delete, data: { confirm: t('defaults.message.delete_confirm') }%>
+                </div>
                 <script type="text/javascript">
                   const addForm = (e) => {
                     const addEventRoleForm = document.getElementById('event-role');

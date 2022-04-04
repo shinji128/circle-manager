@@ -55,10 +55,17 @@ class EventsController < ApplicationController
     @set_attendance = Attendance.find_by(user_id: current_user.id, event_id: @event.id)
   end
 
+  def destroy
+    event =Event.find(params[:id])
+    redirect_to circle_path(event.circle) if !event.circle.circle_member?(current_user)
+    event.destroy!
+    redirect_to circle_event_list_path(event.circle)
+  end
+
   def shuffle
     @event = Event.find(params[:id])
     @circle = @event.circle
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(event.circle) if !@circle.circle_member?(current_user)
     @members = {}
     member_id = 1
     @event.attendances.absent.each do |i|
