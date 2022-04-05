@@ -1,0 +1,21 @@
+@layer base {
+  .state-form {
+    @apply  text-white font-bold px-2 rounded-full
+  }
+
+  .present-state {
+    @apply  bg-yellow-500
+  }
+
+  .absent-state {
+    @apply  bg-green-500
+  }
+
+  .undecided-state {
+    @apply  bg-gray-600
+  }
+
+  .no-exit-state {
+    @apply  bg-red-500
+  }
+}
