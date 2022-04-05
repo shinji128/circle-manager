@@ -1,6 +1,6 @@
 .focus:outline-none
   div id="event-id-#{event.id}"
-    = link_to circle_event_path(@circle, event)
+    = link_to circle_event_path(event.circle, event)
       .bg-white.flex.p-2.space-x-2.items-center.shadow-xl.max-w-sm.rounded-md
         .flex
           .font-semibold.text-xl

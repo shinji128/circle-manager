@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     end
     resources :circle_roles, only: %i[new create]
   end
+  resources :events, only: %i[index]
   resource :mypage, only: %i[show edit update]
 end
