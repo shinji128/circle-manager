@@ -1,5 +1,5 @@
-if (document.URL.match(/new/)){
-  document.addEventListener('DOMContentLoaded', () => {
+if (document.URL.match(/new/)) {
+  document.addEventListener('turbolinks:load', () => {
     const createImageHTML = (blob) => {
       const imageElement = document.getElementById('new-image');
       const blobImage = document.createElement('img');
@@ -11,7 +11,7 @@ if (document.URL.match(/new/)){
 
     document.getElementById('circle_top_image').addEventListener('change', (e) => {
       const imageContent = document.querySelector('img');
-      if (imageContent){
+      if (imageContent) {
         imageContent.remove();
       }
 

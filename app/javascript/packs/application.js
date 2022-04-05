@@ -14,6 +14,7 @@ import "./other_image_preview";
 import "./top_image_preview";
 import "./humburger";
 import "./shuffle";
+import "./attendance_state";
 
 Rails.start()
 Turbolinks.start()

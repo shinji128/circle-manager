@@ -5,7 +5,8 @@
         .flex
           .font-semibold.text-xl
             = event.name
-          #event-state.ml-3
-            = event.attendance_state(current_user)
+          .ml-3.state-form.present-state
+            #attendance-state.inline-block.align-middle
+              = event.attendance_state(current_user)
           p.mt-1.text-black.text-sm.cursor-pointer.line-clamp-3
             = event.event_at

@@ -1,4 +1,4 @@
-if (document.URL.match(/shuffle/)) {
+if (document.URL.match(/event/)) {
   document.addEventListener('turbolinks:load', () => {
     const memberElement = document.getElementById('member');
     const member = JSON.parse(memberElement.getAttribute('data-member-status'));
