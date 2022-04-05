@@ -1,5 +1,15 @@
 class EventsController < ApplicationController
 
+  def index
+    events = []
+    current_user.affiliation_circles.each do |circle|
+      circle.events.each do |event|
+        events << event
+      end
+    end
+    @events = events.sort{|a,b| a.created_at <=> b.created_at}.reverse
+  end
+
   def circle_events
     @circle = Circle.find(params[:id])
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
@@ -12,7 +22,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @circle = Circle.find(params[:circle_id])
+
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
     @event_form = EventForm.new(event_params)
     if @event_form.save

@@ -13,9 +13,9 @@
 
   <body>
     <% if logged_in? %>
-      <%= render 'shared/header' %>
+      <%= render 'shared/humburger' %>
     <% else %>
-      <%= render 'shared/before_login_header' %>
+      <%= render 'shared/before_login_humburger' %>
     <% end %>
     <%= render 'shared/flash_message' %>
     <%= yield %>
