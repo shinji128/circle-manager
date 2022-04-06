@@ -61,10 +61,7 @@
                 = render 'event_role', event_role: event_role
 
   .mt-3.bg-white.rounded-lg
-    - if @event.attendance_answer?(current_user)
-      = render 'attendance_edit_form'
-    - else
-      = render 'attendance_form'
+    = render 'attendances/attendance_form'
 
   .mt-3.bg-white.rounded-lg
     .p-2.mx-2
@@ -79,4 +76,4 @@
             th.border.border-gray-400.px-4.py-2.text-gray-800 出欠メモ
         tbody
           - @event.attendances.each do |attendance|
-            = render 'attendance', attendance: attendance
+            = render 'attendances/attendance', attendance: attendance

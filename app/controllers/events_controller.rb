@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   end
 
   def create
-
+    @circle = Circle.find(params[:circle_id])
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
     @event_form = EventForm.new(event_params)
     if @event_form.save
@@ -61,8 +61,11 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @circle = @event.circle
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
-    @attendance = Attendance.new
-    @set_attendance = Attendance.find_by(user_id: current_user.id, event_id: @event.id)
+    if  Attendance.find_by(user_id: current_user.id, event_id: @event.id)
+      @attendance = Attendance.find_by(user_id: current_user.id, event_id: @event.id)
+    else
+      @attendance = Attendance.new
+    end
   end
 
   def destroy
