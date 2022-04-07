@@ -1,11 +1,12 @@
-.bg-blue-900.sticky.top-0.text-center.text-white
-  = @event.circle.name
-.flex-row.flex-col.h-screen.py-10.px-2.bg-gray-200
-  = link_to '編集', edit_circle_event_path(@circle, @event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
-  = link_to 'シャッフル', shuffle_path(@event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
-  = link_to 'シェアシャッフル', circle_event_matches_path(@circle, @event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
+= render 'circles/header', circle: @circle
 
-  .bg-white.rounded-lg.mt-2
+.flex-row.flex-col.min-h-screen.py-10.px-2.bg-gray-200
+  .mt-10
+    = link_to '編集', edit_circle_event_path(@circle, @event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
+    = link_to 'シャッフル', shuffle_path(@event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
+    = link_to 'シェアシャッフル', circle_event_matches_path(@circle, @event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
+
+  .bg-white.rounded-lg.mt-4
     .p-2.mx-2
       .border-b-4.border-gray-400.font-semibold
         = @event.name
@@ -77,3 +78,5 @@
         tbody
           - @event.attendances.each do |attendance|
             = render 'attendances/attendance', attendance: attendance
+
+= render 'circles/footer', circle: @circle

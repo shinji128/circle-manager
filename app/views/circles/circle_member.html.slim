@@ -1,3 +1,5 @@
+= render 'circles/header', circle: @circle
+
 .flex.flex-col.h-screen.py-4.bg-gray-200
   .px-2.py-2.mt-14
     .text-xl.underline
@@ -7,3 +9,5 @@
         .grid.sm:grid-cols-1.gap-8
           - @affiations.each do |affiation|
             = render 'circles/member', affiation: affiation
+
+= render 'circles/footer', circle: @circle
