@@ -1,0 +1,6 @@
+.focus:outline-none
+  div id="circle-role-id-#{circle_role.id}"
+    .flex.justify-between.bg-white.flex.p-2.space-x-2.items-center.shadow-xl.max-w-sm.rounded-md
+      .font-semibold.text-xl
+        = circle_role.name
+      = link_to '削除', circle_circle_role_path(@circle, circle_role.id), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', method: :delete
