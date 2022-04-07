@@ -1,3 +1,6 @@
+
+= render 'circles/header', circle: @circle
+
 .flex.flex-col.h-screen.py-4.bg-gray-200
   .px-2.py-2.mt-14
     = link_to new_circle_event_path(@circle) do
@@ -12,3 +15,5 @@
         .grid.sm:grid-cols-1.gap-8
           - @events.each do |event|
             = render 'event', event: event
+
+= render 'circles/footer', circle: @circle
