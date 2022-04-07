@@ -13,10 +13,16 @@
                 .relative.py-2
                   = f.fields_for 'circle_role_attributes[]', CircleRole.new do |i|
                     #circle-role-form
-                      = i.label :name
+                      = i.label '役割名'
                       = i.text_field :name, class: "border-0 px-3 py-1 placeholder-bluegray-300 text-bluegray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-10"
                     span.cursor-pointer.underline.hover:opacity-75 onclick="addHTML()" フォームを追加
                 = f.submit class: "px-4 py-2 rounded-md text-sm font-medium border shadow focus:outline-none focus:ring transition text-white bg-blue-700 active:bg-yellow-200 focus:ring-yellow-300"
+
+    .mx-auto.container.mt-2
+      .focus:outline-none aria-label=("Group of cards") tabindex="0"
+        .grid.sm:grid-cols-1.gap-8
+          - @circle_roles.each do |circle_role|
+            = render 'circle_role', circle_role: circle_role
 
 javascript:
   function addHTML() {

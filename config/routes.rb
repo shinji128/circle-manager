@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :attendances, only: %i[new create update]
       resource :matches, only: %i[create show edit update destroy show]
     end
-    resources :circle_roles, only: %i[new create]
+    resources :circle_roles, only: %i[new create destroy]
   end
   resources :events, only: %i[index]
   resource :mypage, only: %i[show edit update]
