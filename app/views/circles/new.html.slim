@@ -13,11 +13,13 @@
                 = render 'shared/error_messages', object: f.object
                 .flex.relative.w-full.mb-0.py-2
                   .ml-3
-                    = f.radio_button :state, :publish
-                    = f.label :publish, '公開'
+                    label
+                      = f.radio_button :state, :publish
+                      | 公開
                   .ml-3
-                    = f.radio_button :state, :unpublish
-                    = f.label :unpublish, '非公開'
+                    label
+                      = f.radio_button :state, :unpublish
+                      | 非公開
                 .relative.w-full.mb-0.py-2
                   = f.label :name
                   = f.text_field :name, class: "form-control"
