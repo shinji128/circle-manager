@@ -28,7 +28,7 @@ class MatchesController < ApplicationController
           break
         end
         match = round_robin.shuffle.first
-        if event.check_duplication_match(match) && event.check_duplication_member(match) &&
+        if event.check_duplication_match(match) && event.check_duplication_member(match)
           event.matches.create(event_id: event.id, user_a: match[0], user_b: match[1], user_c: match[2], user_d: match[3])
         end
       end
