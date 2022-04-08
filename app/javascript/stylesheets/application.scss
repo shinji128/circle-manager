@@ -35,4 +35,8 @@
     @apply text-center flex justify-between
   }
 
+  .shuffle-badge {
+    @apply absolute top-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform bg-red-600 rounded-full -translate-x-7 -translate-y-4
+  }
+
 }

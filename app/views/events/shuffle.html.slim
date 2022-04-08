@@ -28,7 +28,9 @@
     - for i in(1..@members.count) do
       #member-list.bg-blue-700.text-white.rounded-full.py-2.px-4.m-1
         div class="member-#{i}"
-          = @members[i]['name']
-          span class="play-count-#{i} rounded-full"
-            = @members[i]['play_count']
+          span.relative.inline-block
+            span.shuffle-badge
+              span class="play-count-#{i}"
+                = @members[i]['play_count']
+            = @members[i]['name']
 #member data-member-status="#{@members.to_json}"

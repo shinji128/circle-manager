@@ -20,36 +20,44 @@ class Event < ApplicationRecord
   end
 
   def check_duplication_member(match)
-    match_set = []
-    self.matches.each do |m|
-      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
-    end
-    match_array = match_set.flatten
+    match_check = self.match_array.flatten
     match.each do |m|
-      match_array = match_array - [m]
+      match_check = match_check - [m]
     end
-    match_array.count == match_set.flatten.count
+    match_check.count == self.match_array.flatten.count
   end
 
   def check_duplication_match(match)
-    match_set = []
-    self.matches.each do |m|
-      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
-    end
     match_check = [match[0], match[1], match[2], match[3]]
-    match_set.count == (match_set - match_check).count
+    self.match_array.count == (self.match_array - match_check).count
   end
 
   def check_duplication_match_result(match)
     if !self.match_results.empty?
-      match_set = []
-      self.match_results.each do |m|
-        match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
-      end
       match_check = [match[0], match[1], match[2], match[3]]
-      !match_set.include?(match_check)
+      !self.match_result_array.include?(match_check)
     else
       true
     end
+  end
+
+  def match_count(user)
+    self.match_result_array.flatten.count(user.user_id)
+  end
+
+  def match_array
+    match_set = []
+    self.matches.each do |m|
+      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
+    end
+    match_set
+  end
+
+  def match_result_array
+    match_set = []
+    self.match_results.each do |m|
+      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
+    end
+    match_set
   end
 end
