@@ -35,9 +35,3 @@
           span.visually-hidden Next
 
   = render 'footer', circle: @circle
-
-  javascript:
-    function copyToClipboard() {
-      const copyTarget = document.getElementById("copyTarget");
-      navigator.clipboard.writeText(copyTarget.value)
-    }

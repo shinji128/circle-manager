@@ -5,10 +5,10 @@ footer.bg-gray-600.sticky.bottom-0
         .text-center
           .hidden
             input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(circle.uuid)}"
-          = button_tag type: 'button', onclick: "copyToClipboard()"
+          button#btn-invite
             i.fa.fa-user-plus.fa-lg
-          .whitespace-no-wrap.text-xs
-            = t('.new_affiliation')
+            .whitespace-no-wrap.text-xs
+              = t('.new_affiliation')
         .text-center
           = link_to member_path(circle) do
             i.fa.fa-users.fa-lg
