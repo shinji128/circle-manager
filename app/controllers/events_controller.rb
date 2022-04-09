@@ -26,23 +26,23 @@ class EventsController < ApplicationController
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
     @event_form = EventForm.new(event_params)
     if @event_form.save
-      redirect_to circle_event_path(@circle, @event_form.event)
+      redirect_to event_path(@event_form.event)
     else
       render :new
     end
   end
 
   def edit
-    @circle = Circle.find(params[:circle_id])
+    @event = Event.find(params[:id])
+    @circle = @event.circle
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
-    @event = @circle.events.find(params[:id])
     @event_form = EventForm.new(event: @event)
   end
 
   def update
-    @circle = Circle.find(params[:circle_id])
+    @event = Event.find(params[:id])
+    @circle = @event.circle
     redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
-    @event = @circle.events.find(params[:id])
     @event_form = EventForm.new(event_params, event: @event)
     if params[:event][:event_roles_ids]
       params[:event][:event_roles_ids].each do |event_role_id|
@@ -51,7 +51,7 @@ class EventsController < ApplicationController
       end
     end
     if @event_form.update
-      redirect_to circle_event_path(@circle, @event)
+      redirect_to event_path(@event)
     else
       render :edit
     end

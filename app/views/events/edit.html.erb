@@ -11,7 +11,7 @@
         <div class="flex flex-wrap">
           <div class="w-full px-4">
             <div class="relative w-full mb-5">
-              <%= form_with(model: [@circle, @event_form], local: true) do |f| %>
+              <%= form_with model: @event_form, local: true do |f| %>
                 <%= render 'shared/error_messages', object: f.object %>
                 <div class="relative py-2">
                   <%= f.label :name %>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="flex justify-between">
                   <%= f.submit class: "form-submit" %>
-                  <%= link_to '削除', circle_event_path(@circle, @event), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', method: :delete, data: { confirm: t('defaults.message.delete_confirm') }%>
+                  <%= link_to '削除', event_path(@event), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', method: :delete, data: { confirm: t('defaults.message.delete_confirm') }%>
                 </div>
                 <script type="text/javascript">
                   const addForm = (e) => {

@@ -3,8 +3,8 @@
     .flex.border-b-4.border-gray-400
       .font-semibold.flex
         p 出欠登録
-        .ml-3.state-form
-          #attendance-state.inline-block.align-middle
+        .ml-3.state-form.mb-1
+          #attendance-state.inline-block
             = @event.attendance_state(current_user)
     = form_with(model: [@circle, @event, @attendance], local: true) do |f|
       .flex
