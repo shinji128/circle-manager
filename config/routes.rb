@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   get 'event/:id/matchdecide' => 'match_results#match_decide', :as => :match_decide
 
   resources :circles do
-    resources :events, only: %i[new create edit update show destroy] do
+    resources :events, only: %i[new create] do
       resources :attendances, only: %i[new create update]
       resource :matches, only: %i[create show edit update destroy show]
     end
     resources :circle_roles, only: %i[new create destroy]
   end
-  resources :events, only: %i[index]
+  resources :events, only: %i[index show edit update show destroy]
   resource :mypage, only: %i[show edit update]
 end

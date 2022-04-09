@@ -2,7 +2,7 @@
 
 .flex-row.flex-col.min-h-screen.py-10.px-2.bg-gray-200
   .mt-10
-    = link_to '編集', edit_circle_event_path(@circle, @event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
+    = link_to '編集', edit_event_path(@event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
     = link_to 'シャッフル', shuffle_path(@event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
     = link_to 'シェアシャッフル', circle_event_matches_path(@circle, @event), class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-2'
 
@@ -14,9 +14,16 @@
         .mx-2.border-b-2.border-gray-400
           .flex
             .p-2.font-mono.whitespace-no-wrap.text-gray-600
-              p 日時
+              p 開催日
             .p-2.font-mono.whitespace-no-wrap.text-black
-              = @event.event_at
+              = @event.event_start_day
+      - if @event.event_time
+        .mx-2.border-b-2.border-gray-400
+          .flex
+            .p-2.font-mono.whitespace-no-wrap.text-gray-600
+              p 開始時刻
+            .p-2.font-mono.whitespace-no-wrap.text-black
+              = @event.event_start_time
       - if @event.place.present?
         .mx-2.border-b-2.border-gray-400
           .flex
@@ -44,7 +51,7 @@
             .p-2.font-mono.whitespace-no-wrap.text-gray-600
               p 回答期限
             .p-2.font-mono.whitespace-no-wrap.text-black
-              = @event.limit_answer_at
+              = @event.limit_ans_at
       - if @event.note.present?
         .mx-2.border-b-2.border-gray-400
           .flex
