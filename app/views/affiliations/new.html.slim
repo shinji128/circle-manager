@@ -1,2 +1,4 @@
-p 加入
-= link_to 'サークル加入', circle_affiliations_path, method: :post
+.flex.justify-center.mt-20
+  = image_tag @circle.top_image, class: "rounded-full w-32 mb-4 mx-auto shadow-sm"
+.text-center
+  = link_to 'サークルに加入する', circle_affiliations_path, class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full', method: :post
