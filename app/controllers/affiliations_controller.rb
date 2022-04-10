@@ -1,6 +1,8 @@
 class AffiliationsController < ApplicationController
 
-  def new; end
+  def new
+    @circle = Circle.find_by(uuid: params[:uuid])
+  end
 
   def create
     if logged_in?
