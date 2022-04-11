@@ -19,6 +19,8 @@ ja:
         people_limit_num: 人数上限(人)
         limit_answer_at: 出欠回答期限
         note: 備考欄
+      affiliation:
+        introduction: 紹介文
   activemodel:
     attributes:
       event_form:

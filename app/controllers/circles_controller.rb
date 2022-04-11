@@ -64,7 +64,7 @@ class CirclesController < ApplicationController
   def circle_member
     @circle = Circle.find(params[:id])
     if @circle.affiliation_user.include?(current_user)
-      @affiations = @circle.affiliations.includes(:user).order(created_at: :desc)
+      @affiliations = @circle.affiliations.includes(:user).order(created_at: :desc)
     else
       flash.now[:alert] = 'サークルメンバーだけが閲覧できます'
     end
