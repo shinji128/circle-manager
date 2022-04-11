@@ -29,3 +29,6 @@ ja:
   matches:
     show:
       submit: シャッフル
+  affiliations:
+    edit:
+      submit: 更新

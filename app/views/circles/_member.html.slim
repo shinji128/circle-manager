@@ -1,9 +1,12 @@
 .focus:outline-none
-  div id="affiation-id-#{affiation.id}"
-    .bg-white.flex.p-2.space-x-2.items-center.shadow-xl.max-w-sm.rounded-md
-      = image_tag affiation.user.avatar.variant(gravity: :center, resize:"100x80^", crop:"100x80+0+0"), class: "focus:outline-none"
+  div id="affiliation-id-#{affiliation.id}"
+    .bg-white.flex.p-2.space-x-2.items-center.shadow-xl.rounded-md
+      = image_tag affiliation.user.avatar.variant(gravity: :center, resize:"100x80^", crop:"100x80+0+0"), class: "focus:outline-none"
       .column
-        div.font-semibold.text-xl
-          = affiation.user.name
+        .flex.text-center.inline-block.align-middle
+          div.flex.font-semibold.text-xl.mr-3
+            = affiliation.user.name
+          - if affiliation.user == current_user
+            = link_to '編集', edit_circle_affiliation_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
         p.mt-1.text-black.text-sm.cursor-pointer.line-clamp-3
-          = affiation.introduction
+          = affiliation.introduction

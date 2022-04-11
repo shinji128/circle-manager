@@ -22,4 +22,24 @@ class AffiliationsController < ApplicationController
       redirect_to auth_at_provider_path(:provider => :line)
     end
   end
+
+  def edit
+    @circle = Circle.find(params[:circle_id])
+    if @circle.circle_member?(current_user)
+      @affiliation = @circle.affiliations.find_by(user_id: current_user.id)
+      @user = @affiliation.user
+    else
+      redirect_to circle_path(@circle)
+    end
+  end
+
+  def update
+    @circle = Circle.find(params[:circle_id])
+    @affiliation = @circle.affiliations.find_by(user_id: current_user.id)
+    if @affiliation.update(introduction: params[:affiliation][:introduction])
+      redirect_to circle_path(@circle), notice: 'サークルの自己紹介文を更新しました'
+    else
+      render :edit
+    end
+  end
 end
