@@ -23,6 +23,13 @@ class AffiliationsController < ApplicationController
     end
   end
 
+  def show
+    @affiliation = Affiliation.find(params[:id])
+    @circle = @affiliation.circle
+    @user = @affiliation.user
+    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+  end
+
   def edit
     @circle = Circle.find(params[:circle_id])
     if @circle.circle_member?(current_user)
