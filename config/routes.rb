@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   end
   resources :events, only: %i[index show edit update show destroy]
   resource :mypage, only: %i[show edit update]
+  resources :affiliations, only: %i[show]
 end
