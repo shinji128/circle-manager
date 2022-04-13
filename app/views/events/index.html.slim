@@ -1,8 +1,9 @@
 .flex.flex-col.h-screen.py-4.bg-gray-200
   .px-2.py-2.mt-14
-    .mt-2.text-xl.underline
-      p イベントリスト
-    .mx-auto.container.mt-2
+    .border-l-4.border-green-500.font-bold.text-xl
+      .ml-3
+        | イベントリスト
+    .mx-auto.container.mt-3
       .focus:outline-none aria-label=("Group of cards") tabindex="0"
         .grid.sm:grid-cols-1.gap-8
           - @events.each do |event|

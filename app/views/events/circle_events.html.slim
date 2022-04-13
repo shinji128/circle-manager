@@ -1,15 +1,15 @@
-
 = render 'circles/header', circle: @circle
 
-.flex.flex-col.h-screen.py-4.bg-gray-200
-  .px-2.py-2.mt-14
+.flex.flex-col.min-h-screen.py-4.bg-gray-200
+  .fixed.right-3.bottom-14
     = link_to new_circle_event_path(@circle) do
-      .flex
-        i.fa.fa-plus-square.fa-lg
-        .ml-2.whitespace-no-wrap
-          p イベント作成
-    .mt-2.text-xl.underline
-      p イベントリスト
+      .bg-yellow-500.w-16.h-16.rounded-full.grid.grid-cols-1
+        .text-white.place-self-center.text-center
+          i.fa.fa-plus.fa-lg
+  .px-2.py-2.mt-10
+    .border-l-4.border-green-500.font-bold.text-xl
+      .ml-3
+        | イベントリスト
     .mx-auto.container.mt-2
       .focus:outline-none aria-label=("Group of cards") tabindex="0"
         .grid.sm:grid-cols-1.gap-8

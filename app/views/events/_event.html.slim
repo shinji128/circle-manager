@@ -6,7 +6,7 @@
           .ml-3.state-form
             #attendance-state.inline-block.align-middle.text-center.w-12
               = event.attendance_state(current_user)
-          .font-semibold.text-xl.ml-2
+          .font-semibold.text-xl.ml-2.truncate
             = event.name
         .flex.flex-col
           - if event.event_at
