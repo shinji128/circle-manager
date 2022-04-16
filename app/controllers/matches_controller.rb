@@ -39,7 +39,12 @@ class MatchesController < ApplicationController
 
   def show
     @event = Event.find(params[:event_id])
-    @members = @event.attendances.absent
+    @members = []
+    @event.attendances.absent.each do |m|
+      if !@event.match_array.flatten.include?(m.user_id)
+        @members << m
+      end
+    end
     @matches = @event.matches.includes(:event)
     @match_results = @event.match_results
     @play_num = @event.matches.new

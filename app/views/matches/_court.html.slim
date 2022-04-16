@@ -1,21 +1,36 @@
-div id="court-#{match.id}"
-  .court
-    .court-lh
-      #court-block-1.court-block.lhup
-        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
-          .text-center
-            = match.user_a_name
-      #court-block-2.court-block.lhlo
-        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
-          .text-center
-            = match.user_b_name
-    .court-center
-    .court-rh
-      #court-block-3.court-block.rhup
-        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
-          .text-center
-            = match.user_c_name
-      #court-block-4.court-block.rhlo
-        .bg-blue-700.text-white.rounded-full.py-2.px-4.m-auto
-          .text-center
-            = match.user_d_name
+.court
+  .court-lh
+    #court-block-1.court-block.lhup
+      .player
+        .player-name
+          .shuffle-badge
+            = @event.match_count_player(match.user_a)
+          = match.attendance_user(match.user_a).name
+          .hidden
+            = @event.player_attendance_id(match.user_a).id
+    #court-block-2.court-block.lhlo
+      .player
+        .player-name
+          .shuffle-badge
+            = @event.match_count_player(match.user_b)
+          = match.attendance_user(match.user_b).name
+          .hidden
+            = @event.player_attendance_id(match.user_b).id
+  .court-center
+  .court-rh
+    #court-block-3.court-block.rhup
+      .player
+        .player-name
+          .shuffle-badge
+            = @event.match_count_player(match.user_c)
+          = match.attendance_user(match.user_c).name
+          .hidden
+            = @event.player_attendance_id(match.user_c).id
+    #court-block-4.court-block.rhlo
+      .player
+        .player-name
+          .shuffle-badge
+            = @event.match_count_player(match.user_d)
+          = match.attendance_user(match.user_d).name
+          .hidden
+            = @event.player_attendance_id(match.user_d).id

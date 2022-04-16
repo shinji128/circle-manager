@@ -15,10 +15,6 @@
     @apply bg-green-600 border-solid border-t-2 border-white w-40 h-20 flex justify-center
   }
 
-  .court-center {
-    @apply bg-green-600 border-solid border-l-2 border-r-2 border-white w-10 h-40 flex
-  }
-
   .rhup {
     @apply bg-green-600 border-solid border-b-2 border-white w-40 h-20 flex justify-center
   }
@@ -28,6 +24,22 @@
   }
 
   .shuffle-page-button {
-    @apply  text-white text-sm font-bold py-2 px-1 mx-1 rounded-full
+    @apply text-white text-sm font-bold py-2 px-1 mx-1 rounded-full
+  }
+
+  .bench {
+    @apply mt-3 px-2 flex justify-center flex-wrap gap-3
+  }
+
+  .player {
+    @apply bg-blue-700 text-white rounded-full py-2 px-4 m-auto
+  }
+
+  .bench-player {
+    @apply bg-blue-700 text-white rounded-full py-2 px-4 m-auto
+  }
+
+  .player-name {
+    @apply  relative inline-block
   }
 }

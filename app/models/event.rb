@@ -45,6 +45,10 @@ class Event < ApplicationRecord
     self.match_result_array.flatten.count(user.user_id)
   end
 
+  def match_count_player(user)
+    self.match_result_array.flatten.count(user)
+  end
+
   def match_array
     match_set = []
     self.matches.each do |m|
@@ -59,5 +63,9 @@ class Event < ApplicationRecord
       match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
     end
     match_set
+  end
+
+  def player_attendance_id(player)
+    self.attendances.absent.find_by(user_id: player)
   end
 end
