@@ -13,26 +13,42 @@
   - else
     - @matches.each do |match|
       = render 'matches/court', match: match
-  = form_with(model: [@event.circle, @event, @play_num], local: true) do |f|
-      .text-center.my-auto.mb-3
-        = f.label 'コート数'
-        = f.number_field :play_num, value: @matches.count, class: "form-control w-20 ml-5"
-      .grid.grid-cols-2.divide-x.divide-gray-400.mb-3
-        .text-center.my-auto
-          = button_tag type: 'submit', class: "btn-shuffle shuffle-page-button bg-yellow-500 hover:bg-yellow-600" do
-            i.fas.fa-random.fa-lg
-            span シャッフル
-        .text-center.my-auto
-          = link_to match_decide_path(@event), class: "py-3 btn-shuffle shuffle-page-button bg-green-500 hover:bg-blue-600" do
-            i.fas.fa-check.fa-lg.mr-3
-            span 確定
 
-  #members-list.mt-3.flex.justify-center.flex-wrap
+  .text-center.mb-3
+    label for='match_コート数'
+      | コート数
+    input#court_num.form-control.w-20.ml-5 type="number" name="match[play_num]" value="#{@matches.count}"
+
+  .grid.grid-cols-2.divide-x.divide-gray-400.mb-3
+    .text-center.my-auto
+      = form_with(model: [@event.circle, @event, @play_num], local: true) do |f|
+        .hidden
+          = f.number_field :play_num, value: @matches.count
+        = button_tag type: 'submit', class: "btn-shuffle shuffle-page-button bg-yellow-500 hover:bg-yellow-600" do
+          i.fas.fa-random.fa-lg
+          span シャッフル
+
+    .text-center.my-auto
+      = form_with(model: [@event, @match_results], local: true) do |f|
+        .hidden
+          - @matches.each do |m|
+            = f.fields_for 'match_results[]', MatchResult.new, {} do |i|
+              = i.number_field :user_a, class: 'attendance_input', value: @event.player_attendance_id(m.user_a).id
+              = i.number_field :user_b, class: 'attendance_input', value: @event.player_attendance_id(m.user_b).id
+              = i.number_field :user_c, class: 'attendance_input', value: @event.player_attendance_id(m.user_c).id
+              = i.number_field :user_d, class: 'attendance_input', value: @event.player_attendance_id(m.user_d).id
+        = button_tag type: 'submit', class: "py-3 btn-shuffle shuffle-page-button bg-green-500 hover:bg-blue-600" do
+          i.fas.fa-check.fa-lg.mr-3
+          span 確定
+
+  #members-list.bench
     - @members.each do |member|
-      span.bg-blue-700.text-white.rounded-full.py-2.px-4.m-1
-        span.relative.inline-block
-          span.shuffle-badge
+      .player
+        .player-name
+          .shuffle-badge
             = @event.match_count(member)
           = member.user.name
+          #attendance-id.hidden
+            = @event.player_attendance_id(member).id
 
 = render 'circles/footer', circle: @event.circle
