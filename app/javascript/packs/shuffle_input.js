@@ -5,7 +5,6 @@ document.addEventListener('turbolinks:load', () => {
 
   const courtNumChange = () => {
     matchPlayNum.value = courtNum.value
-    console.log('イベント設置')
   }
 
   courtNum.addEventListener('change', courtNumChange);
