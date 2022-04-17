@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   get 'circle/:uuid/affiliations' => 'affiliations#new', :as => :new_circle_affiliation
   post 'circle/:uuid/affiliations' => 'affiliations#create', :as => :circle_affiliation
   get 'event/:id/shuffle' => 'events#shuffle', :as => :shuffle
-  get 'event/:id/matchdecide' => 'match_results#match_decide', :as => :match_decide
 
   resources :circles do
     resources :events, only: %i[new create] do
@@ -20,7 +19,9 @@ Rails.application.routes.draw do
     resource :affiliation, only: %i[edit update]
     resources :circle_roles, only: %i[new create destroy]
   end
-  resources :events, only: %i[index show edit update show destroy]
+  resources :events, only: %i[index show edit update show destroy] do
+    resource :match_results, only: %i[create]
+  end
   resource :mypage, only: %i[show edit update]
   resources :affiliations, only: %i[show]
 end

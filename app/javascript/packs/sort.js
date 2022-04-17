@@ -8,85 +8,78 @@ document.addEventListener('turbolinks:load', () => {
     event.preventDefault();
 
     // ドラッグ中のアイテムをカーソルの位置に追従
-    const draggedElem = event.target;
+    const touchElem = event.target;
     const touch = event.changedTouches[0];
-    draggedElem.parentElement.style.position = "fixed";
-    draggedElem.parentElement.style.top = (touch.pageY - window.pageYOffset - draggedElem.offsetHeight / 2) + "px";
-    draggedElem.parentElement.style.left = (touch.pageX - window.pageXOffset - draggedElem.offsetWidth / 2) + "px";
+    if (touchElem.className == 'player' || touchElem.className == 'bench-player') {
+      touchElem.style.position = "fixed";
+      touchElem.style.top = (touch.pageY - window.pageYOffset - touchElem.offsetHeight / 2) + "px";
+      touchElem.style.left = (touch.pageX - window.pageXOffset - touchElem.offsetWidth / 2) + "px";
+    } else {
+      touchElem.parentElement.style.position = "fixed";
+      touchElem.parentElement.style.top = (touch.pageY - window.pageYOffset - touchElem.offsetHeight / 2) + "px";
+      touchElem.parentElement.style.left = (touch.pageX - window.pageXOffset - touchElem.offsetWidth / 2) + "px";
+    }
+  }
+
+  const styleReset = (item) => {
+    item.style.position = '';
+    item.style.top = '';
+    item.style.left = '';
   }
 
   const touchEndEvent = (event) => {
     event.preventDefault();
+    event.stopPropagation();
 
+    let touchElem = event.target
     // ドラッグ中の操作のために変更していたスタイルを元に戻す
-    const droppedElem = event.target
-    droppedElem.style.position = "";
-    event.target.style.top = "";
-    event.target.style.left = "";
+    if (event.target.className == 'player-name') {
+      touchElem = event.target.parentElement
+    }
+    styleReset(touchElem)
 
-    const droppedElemParent = event.target.parentElement
-    droppedElemParent.style.position = "";
-    droppedElemParent.style.top = "";
-    droppedElemParent.style.left = "";
-
-    const bench = document.getElementById('members-list')
-
-    // ドロップした位置にあるドロップ可能なエレメントに親子付けする
+    // ドロップした位置の絶対座標
     const touch = event.changedTouches[0];
-    // スクロール分を加味した座標に存在するエレメントを新しい親とする
-    const afterElem = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset)
-    const beforeElem = event.target.parentElement
-    if (afterElem.className.includes('court-block')) {
-      beforeElem.parentElement.appendChild(afterElem.firstChild);
-      afterElem.appendChild(droppedElem.parentElement);
-    } else if (afterElem.className == 'player-name') {
-      console.log('player-name')
-      afterElem.parentElement.parentElement.appendChild(droppedElem.parentElement);
-      const blankCourt = []
-      const court = document.querySelectorAll('.court-block')
-      for (let i = 0; i < court.length; ++i) {
-        const item = court[i];
-        if (item.childElementCount == 0) {
-          blankCourt.push(item)
-        }
-      }
-      if (blankCourt.length == 0) {
-        console.log('hoge')
-        bench.appendChild(afterElem.parentElement);
-      } else {
-        blankCourt[0].appendChild(beforeElem.parentElement)
-      }
-    } else if (afterElem.className == 'player'){
-      afterElem.parentElement.appendChild(droppedElem.parentElement);
-      const blankCourt = []
-      const court = document.querySelectorAll('.court-block')
-      for (let i = 0; i < court.length; ++i) {
-        const item = court[i];
-        if (item.childElementCount == 0) {
-          blankCourt.push(item)
-        }
-      }
-      if (blankCourt.length == 0) {
-        bench.appendChild(afterElem);
-      } else {
-        blankCourt[0].appendChild(afterElem)
-      }
+    // スクロール分を加味した座標のエレメントを取得
+    const dropElem = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset)
+    const dropParentElem = dropElem.parentElement
+    const dropAncestorElem = dropElem.parentElement.parentElement
+
+    if (dropElem.className.includes('court-block')) {
+      touchElem.parentElement.appendChild(dropElem.firstElementChild)
+      dropElem.appendChild(touchElem)
+    } else if (dropElem.className == 'player') {
+      touchElem.parentElement.appendChild(dropElem)
+      dropParentElem.appendChild(touchElem)
+    } else if (dropElem.className == 'player-name') {
+      touchElem.parentElement.appendChild(dropParentElem)
+      dropAncestorElem.appendChild(touchElem)
+    }
+    setMatch();
+  }
+
+  const courtPlayers = document.querySelectorAll('.player')
+  const playerNames = document.querySelectorAll('.player-name')
+
+  const touchEventSet = (items) => {
+    for (let i = 0; i < items.length; ++i) {
+      const item = items[i];
+      item.addEventListener('touchstart', touchStartEvent, false);
+      item.addEventListener('touchmove', touchMoveEvent, false);
+      item.addEventListener('touchend', touchEndEvent, false);
     }
   }
 
-  const dragPlayers = document.querySelectorAll('.player-name')
-  for (let i = 0; i < dragPlayers.length; ++i) {
-    const item = dragPlayers[i];
-    item.addEventListener('touchstart', touchStartEvent, false);
-    item.addEventListener('touchmove', touchMoveEvent, false);
-    item.addEventListener('touchend', touchEndEvent, false);
+  touchEventSet(courtPlayers);
+  touchEventSet(playerNames);
+
+  //タップ&ドロップによる試合メンバーをmatch_resultに反映
+  const setMatch = () => {
+    const users = document.querySelectorAll('.attendance_input')
+    const attendanceIds = document.querySelectorAll('#attendance-id')
+    for (let i = 0; i < attendanceIds.length; ++i) {
+      users[i].value = attendanceIds[i].innerHTML
+    }
   }
 
-  const dragBenchPlayers = document.querySelectorAll('.bench-player')
-  for (let i = 0; i < dragBenchPlayers.length; ++i) {
-    const item = dragBenchPlayers[i];
-    item.addEventListener('touchstart', touchStartEvent, false);
-    item.addEventListener('touchmove', touchMoveEvent, false);
-    item.addEventListener('touchend', touchEndEvent, false);
-  }
 });

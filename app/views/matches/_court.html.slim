@@ -6,7 +6,7 @@
           .shuffle-badge
             = @event.match_count_player(match.user_a)
           = match.attendance_user(match.user_a).name
-          .hidden
+          #attendance-id.hidden
             = @event.player_attendance_id(match.user_a).id
     #court-block-2.court-block.lhlo
       .player
@@ -14,7 +14,7 @@
           .shuffle-badge
             = @event.match_count_player(match.user_b)
           = match.attendance_user(match.user_b).name
-          .hidden
+          #attendance-id.hidden
             = @event.player_attendance_id(match.user_b).id
   .court-center
   .court-rh
@@ -24,7 +24,7 @@
           .shuffle-badge
             = @event.match_count_player(match.user_c)
           = match.attendance_user(match.user_c).name
-          .hidden
+          #attendance-id.hidden
             = @event.player_attendance_id(match.user_c).id
     #court-block-4.court-block.rhlo
       .player
@@ -32,5 +32,5 @@
           .shuffle-badge
             = @event.match_count_player(match.user_d)
           = match.attendance_user(match.user_d).name
-          .hidden
+          #attendance-id.hidden
             = @event.player_attendance_id(match.user_d).id

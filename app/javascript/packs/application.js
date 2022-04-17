@@ -17,6 +17,7 @@ import "./shuffle";
 import "./attendance_state";
 import "./flash_msg_invite";
 import "./sort";
+import "./shuffle_input";
 
 Rails.start()
 Turbolinks.start()

@@ -46,7 +46,8 @@ class MatchesController < ApplicationController
       end
     end
     @matches = @event.matches.includes(:event)
-    @match_results = @event.match_results
+    @match_results = @event.match_results.new
     @play_num = @event.matches.new
+
   end
 end
