@@ -6,9 +6,9 @@
       .focus:outline-none aria-label=("Group of cards") tabindex="0"
         .grid.sm:grid-cols-1.gap-8
           - @affiliations.each do |affiliation|
-            = render 'circles/member', affiliation: affiliation
+            = render 'affiliation', affiliation: affiliation
 
 - if current_user.circle_admin?(@circle)
-  = render 'circle_admin_footer', circle: @circle
+  = render 'circles/circle_admin_footer', circle: @circle
 - else
-  = render 'circle_general_footer', circle: @circle
+  = render 'circles/circle_general_footer', circle: @circle
