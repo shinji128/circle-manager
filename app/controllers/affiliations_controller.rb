@@ -1,5 +1,14 @@
 class AffiliationsController < ApplicationController
 
+  def index
+    @circle = Circle.find(params[:circle_id])
+    if @circle.circle_member?(current_user)
+      @affiliations = @circle.affiliations.includes(:user).order(created_at: :desc)
+    else
+      flash.now[:alert] = 'サークルメンバーだけが閲覧できます'
+    end
+  end
+
   def new
     @circle = Circle.find_by(uuid: params[:uuid])
   end

@@ -10,10 +10,10 @@ footer.bg-gray-600.sticky.bottom-0
             .whitespace-no-wrap.text-xs
               = t('.new_affiliation')
         .text-center
-          = link_to member_path(circle) do
+          = link_to circle_affiliations_path(circle) do
             i.fa.fa-users.fa-lg
             .whitespace-no-wrap.text-xs
-              = t('.member')
+              = t('.index_affiliation')
         .text-center
           - if circle.events
             = link_to circle_event_list_path(circle) do
