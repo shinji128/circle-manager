@@ -18,4 +18,12 @@ class User < ApplicationRecord
       avatar.attach(io: File.open('app/assets/images/default_avatar.jpg'), filename: 'avatar_image.jpg')
     end
   end
+
+  def circle_admin?(circle)
+    circle_admins = []
+    circle.affiliations.admin.each do |i|
+      circle_admins << i.user
+    end
+    circle_admins.include?(self)
+  end
 end

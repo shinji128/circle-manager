@@ -8,4 +8,7 @@
           - @affiliations.each do |affiliation|
             = render 'circles/member', affiliation: affiliation
 
-= render 'circles/footer', circle: @circle
+- if current_user.circle_admin?(@circle)
+  = render 'circle_admin_footer', circle: @circle
+- else
+  = render 'circle_general_footer', circle: @circle

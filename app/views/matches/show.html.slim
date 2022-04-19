@@ -51,4 +51,7 @@
           #attendance-id.hidden
             = @event.player_attendance_id(member).id
 
-= render 'circles/footer', circle: @event.circle
+- if current_user.circle_admin?(@event.circle)
+  = render 'circles/circle_admin_footer', circle: @event.circle
+- else
+  = render 'circles/circle_general_footer', circle: @event.circle

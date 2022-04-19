@@ -16,4 +16,7 @@
           - @events.each do |event|
             = render 'event', event: event
 
-= render 'circles/footer', circle: @circle
+- if current_user.circle_admin?(@circle)
+  = render 'circles/circle_admin_footer', circle: @circle
+- else
+  = render 'circles/circle_general_footer', circle: @circle

@@ -2,6 +2,7 @@ class CreateAffiliations < ActiveRecord::Migration[6.1]
   def change
     create_table :affiliations do |t|
       t.string :introduction
+      t.integer :circle_state, null: false, default: 0
       t.references :user, null: false, foreign_key: true
       t.references :circle, null: false, foreign_key: true
 

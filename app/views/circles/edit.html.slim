@@ -61,4 +61,7 @@
                 .flex.justify-between
                   = f.submit t('.submit'), class: "form-submit"
                   = link_to '削除', circle_path(@circle), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', method: :delete, data: { confirm: t('defaults.message.delete_confirm') }
-= render 'circles/footer', circle: @circle
+- if current_user.circle_admin?(@circle)
+  = render 'circle_admin_footer', circle: @circle
+- else
+  = render 'circle_general_footer', circle: @circle

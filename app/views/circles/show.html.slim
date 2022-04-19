@@ -34,4 +34,7 @@
           span.carousel-control-next-icon.inline-block.bg-no-repeat aria-hidden="true"
           span.visually-hidden Next
 
-  = render 'footer', circle: @circle
+- if current_user.circle_admin?(@circle)
+  = render 'circle_admin_footer', circle: @circle
+- else
+  = render 'circle_general_footer', circle: @circle
