@@ -1,0 +1,15 @@
+footer.bg-gray-600.sticky.bottom-0
+  .text-center.text-white
+    - if circle.affiliation_user.include?(current_user)
+      .grid.grid-cols-2.divide-x-0.divide-gray-400
+        .text-center
+          = link_to member_path(circle) do
+            i.fa.fa-users.fa-lg
+            .whitespace-no-wrap.text-xs
+              = t('.member')
+        .text-center
+          - if circle.events
+            = link_to circle_event_list_path(circle) do
+              i.fas.fa-list-alt.fa-lg
+              .whitespace-no-wrap.text-xs
+                = t('.event_list')

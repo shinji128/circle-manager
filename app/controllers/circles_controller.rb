@@ -12,7 +12,7 @@ class CirclesController < ApplicationController
   def create
     @circle = current_user.circles.new(circle_params)
     if @circle.save
-      Affiliation.create(user: current_user, circle: @circle)
+      Affiliation.create(user: current_user, circle: @circle, circle_state: 1)
       redirect_to circle_path(@circle), notice: 'サークルを設立しました'
     else
       render :new
@@ -21,12 +21,12 @@ class CirclesController < ApplicationController
 
   def edit
     @circle = Circle.find(params[:id])
-    redirect_to circle_path(@circle) if !@circle.affiliation_user.include?(current_user)
+    redirect_to circle_path(@circle) if current_user.circle_admin?(@circle)
   end
 
   def update
     @circle = Circle.find(params[:id])
-    if @circle.affiliation_user.include?(current_user)
+    if current_user.circle_admin?(@circle)
       ActiveRecord::Base.transaction do
         if params[:circle][:top_image_id].to_i == @circle.top_image.id
           @circle.top_image.purge
@@ -56,14 +56,14 @@ class CirclesController < ApplicationController
 
   def destroy
     circle =Circle.find(params[:id])
-    redirect_to circle_path(circle) if !circle.circle_member?(current_user)
+    redirect_to circle_path(circle) if current_user.circle_admin?(circle)
     circle.destroy!
     redirect_to root_path, notice: 'サークルを削除しました'
   end
 
   def circle_member
     @circle = Circle.find(params[:id])
-    if @circle.affiliation_user.include?(current_user)
+    if @circle.circle_member?(current_user)
       @affiliations = @circle.affiliations.includes(:user).order(created_at: :desc)
     else
       flash.now[:alert] = 'サークルメンバーだけが閲覧できます'

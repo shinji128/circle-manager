@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_03_28_144352) do
 
   create_table "affiliations", force: :cascade do |t|
     t.string "introduction"
+    t.integer "circle_state", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "circle_id", null: false
     t.datetime "created_at", precision: 6, null: false
