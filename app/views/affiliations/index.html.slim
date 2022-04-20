@@ -5,7 +5,15 @@
     .ms-2.mt-2
       .focus:outline-none aria-label=("Group of cards") tabindex="0"
         .grid.sm:grid-cols-1.gap-8
-          - @affiliations.each do |affiliation|
+          .border-l-4.border-green-500.font-bold.text-xl
+            .ml-3
+              | 管理者
+          - @affiliation_admins.each do |affiliation|
+            = render 'affiliation', affiliation: affiliation
+          .border-l-4.border-green-500.font-bold.text-xl
+            .ml-3
+              | メンバー
+          - @affiliation_generals.each do |affiliation|
             = render 'affiliation', affiliation: affiliation
 
 - if current_user.circle_admin?(@circle)

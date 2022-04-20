@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'circle/:uuid/affiliations' => 'affiliations#new', :as => :new_circle_affiliation
   post 'circle/:uuid/affiliations' => 'affiliations#create', :as => :circle_affiliation
   get 'event/:id/shuffle' => 'events#shuffle', :as => :shuffle
+  get 'circle/:circle_id/affiliation/:id/assign' => 'affiliations#circle_admin_assign', :as => :circle_admin_assign
+  get 'circle/:circle_id/affiliation/:id/retire' => 'affiliations#circle_admin_retire', :as => :circle_admin_retire
 
   resources :circles do
     resources :events, only: %i[new create] do

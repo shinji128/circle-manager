@@ -9,5 +9,9 @@
               = affiliation.user.name
             - if affiliation.user == current_user
               = link_to '編集', edit_circle_affiliation_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
+            - if current_user.circle_admin?(affiliation.circle) && affiliation.general?
+              = link_to '管理者に任命', circle_admin_assign_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
+            - if current_user.circle_admin?(affiliation.circle) && affiliation.admin?
+              = link_to '管理者を勇退', circle_admin_retire_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
           p.mt-1.text-black.text-sm.cursor-pointer.line-clamp-3
             = affiliation.introduction
