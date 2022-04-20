@@ -3,7 +3,8 @@ class AffiliationsController < ApplicationController
   def index
     @circle = Circle.find(params[:circle_id])
     if @circle.circle_member?(current_user)
-      @affiliations = @circle.affiliations.includes(:user).order(created_at: :desc)
+      @affiliation_admins = @circle.affiliations.admin.includes(:user).order(created_at: :asc)
+      @affiliation_generals = @circle.affiliations.general.includes(:user).order(created_at: :asc)
     else
       flash.now[:alert] = 'サークルメンバーだけが閲覧できます'
     end
@@ -57,5 +58,23 @@ class AffiliationsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def circle_admin_assign
+    @circle = Circle.find(params[:circle_id])
+    if current_user.circle_admin?(@circle)
+      @affiliation = @circle.affiliations.find(params[:id])
+      @affiliation.update(circle_state: 1)
+    end
+    redirect_to circle_affiliations_path(@circle)
+  end
+
+  def circle_admin_retire
+    @circle = Circle.find(params[:circle_id])
+    if current_user.circle_admin?(@circle)
+      @affiliation = @circle.affiliations.find(params[:id])
+      @affiliation.update(circle_state: 0)
+    end
+    redirect_to circle_affiliations_path(@circle)
   end
 end
