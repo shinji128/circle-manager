@@ -19,7 +19,7 @@ class Event < ApplicationRecord
     end
   end
 
-  #現在の試合の中でユーザーが重複していないか確認 (一つのコートに同じユーザが入ることを防ぐ)
+  #現在の試合の中でユーザーが重複していないか確認
   def check_duplication_member(match)
     match_check = self.match_array.flatten
     match.each do |m|

@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
     # コート数を受け取る
     play_num = params[:match][:play_num]
 
-    # コートの数が0またはコートが余ってしまった時にエラーを吐き出す JSでコート数が不適切だったらボタンを無効化する？
+    # コートの数が0またはコートが余ってしまった時にエラーを吐き出す JSでコート数が適切な場合のみボタンを有効化する？
     if 4 * play_num.to_i > event.attendances.absent.count
       flash[:alert] = 'コート数を減らしてください'
       redirect_to circle_event_matches_path(event.circle, event)
@@ -17,12 +17,12 @@ class MatchesController < ApplicationController
 
       # 現在の組み合わせを削除
       event.matches.destroy_all
-      member = event.attendances.absent.pluck(:user_id)
 
       # ペアを作成
+      member = event.attendances.absent.pluck(:user_id)
       pairs = member.combination(2).to_a
 
-      # 試合の組み合わせを作成
+      # 試合の組み合わせを作成 一つの試合でユーザーが重複しないように
       round_robin = []
       pairs.combination(2).to_a.each do |i|
         if i.flatten.uniq.count == 4
@@ -36,13 +36,13 @@ class MatchesController < ApplicationController
         event.matches.create(event_id: event.id, user_a: match[0], user_b: match[1], user_c: match[2], user_d: match[3])
       end
 
-      #過去の試合、現在の試合で同じ組み合わせがなければ試合の組み合わせを作成
+      #過去の試合、現在の試合、現在の試合のユーザーで重複した組み合わせがなければ試合を作成
       loop do
         if play_num.to_i == event.matches.count
           break
         end
         match = round_robin.shuffle.first
-        if event.check_duplication_match(match) && event.check_duplication_member(match)
+        if event.check_duplication_match(match) && event.check_duplication_member(match) && event.check_duplication_match_result(match)
           event.matches.create(event_id: event.id, user_a: match[0], user_b: match[1], user_c: match[2], user_d: match[3])
         end
       end
