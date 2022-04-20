@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
     # コート数を受け取る
     play_num = params[:match][:play_num]
 
-    # コートの数が0またはコートが余ってしまった時にエラーを吐き出す
+    # コートの数が0またはコートが余ってしまった時にエラーを吐き出す JSでコート数が不適切だったらボタンを無効化する？
     if 4 * play_num.to_i > event.attendances.absent.count
       flash[:alert] = 'コート数を減らしてください'
       redirect_to circle_event_matches_path(event.circle, event)
