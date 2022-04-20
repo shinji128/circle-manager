@@ -63,15 +63,4 @@ class MatchesController < ApplicationController
     @match_results = @event.match_results.new
     @play_num = @event.matches.new
   end
-
-  private
-  def court_count_check?(play_num, event)
-    if 4 * play_num.to_i > event.attendances.absent.count
-      flash[:alert] = 'コート数を減らしてください'
-      redirect_to circle_event_matches_path(event.circle, event)
-    else play_num.to_i == 0
-      flash[:alert] = 'コート数を入力してください'
-      redirect_to circle_event_matches_path(event.circle, event)
-    end
-  end
 end
