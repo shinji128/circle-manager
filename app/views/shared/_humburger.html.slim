@@ -12,8 +12,8 @@
           = link_to t('events.index.title'), events_path
         li
           = link_to t('circles.mypage.title'), mypage_path
-        / li
-          / a href="#"  チームシャッフル
+        li
+          = link_to 'ログアウト', logout_path, method: :delete
   .toggle_btn
     span
     span
