@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def circle_events
     @circle = Circle.find(params[:id])
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
     @events = @circle.events.order(event_at: :desc)
   end
 
@@ -23,7 +23,7 @@ class EventsController < ApplicationController
 
   def create
     @circle = Circle.find(params[:circle_id])
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
     @event_form = EventForm.new(event_params)
     if @event_form.save
       redirect_to event_path(@event_form.event)
@@ -35,14 +35,14 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @circle = @event.circle
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
     @event_form = EventForm.new(event: @event)
   end
 
   def update
     @event = Event.find(params[:id])
     @circle = @event.circle
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
     @event_form = EventForm.new(event_params, event: @event)
     if params[:event][:event_roles_ids]
       params[:event][:event_roles_ids].each do |event_role_id|
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @circle = @event.circle
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
     if  Attendance.find_by(user_id: current_user.id, event_id: @event.id)
       @attendance = Attendance.find_by(user_id: current_user.id, event_id: @event.id)
     else
@@ -70,7 +70,7 @@ class EventsController < ApplicationController
 
   def destroy
     event =Event.find(params[:id])
-    redirect_to circle_path(event.circle) if !event.circle.circle_member?(current_user)
+    redirect_to circle_path(event.circle) if !current_user.circle_member?(event.circle)
     event.destroy!
     redirect_to circle_event_list_path(event.circle), notice: 'イベントを削除しました'
   end
@@ -78,7 +78,7 @@ class EventsController < ApplicationController
   def shuffle
     @event = Event.find(params[:id])
     @circle = @event.circle
-    redirect_to circle_path(event.circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(event.circle) if !current_user.circle_member?(@circle)
     @members = {}
     member_id = 1
     @event.attendances.absent.each do |i|

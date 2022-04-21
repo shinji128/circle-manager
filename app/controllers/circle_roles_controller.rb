@@ -24,7 +24,7 @@ private
 
   def set_circle
     @circle = Circle.find(params[:circle_id])
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
   end
 
 end
