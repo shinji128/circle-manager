@@ -19,6 +19,14 @@ class User < ApplicationRecord
     end
   end
 
+  def circle_member?(circle)
+    circle_members = []
+    circle.affiliations.each do |i|
+      circle_members << i.user
+    end
+    circle_members.include?(self)
+  end
+
   def circle_admin?(circle)
     circle_admins = []
     circle.affiliations.admin.each do |i|

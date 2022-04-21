@@ -2,7 +2,7 @@ class AffiliationsController < ApplicationController
 
   def index
     @circle = Circle.find(params[:circle_id])
-    if @circle.circle_member?(current_user)
+    if current_user.circle_member?(@circle)
       @affiliation_admins = @circle.affiliations.admin.includes(:user).order(created_at: :asc)
       @affiliation_generals = @circle.affiliations.general.includes(:user).order(created_at: :asc)
     else
@@ -37,7 +37,7 @@ class AffiliationsController < ApplicationController
     @affiliation = Affiliation.find(params[:id])
     @circle = @affiliation.circle
     @user = @affiliation.user
-    redirect_to circle_path(@circle) if !@circle.circle_member?(current_user)
+    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
   end
 
   def edit

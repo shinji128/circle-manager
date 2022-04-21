@@ -23,8 +23,4 @@ class Circle < ApplicationRecord
       top_image.attach(io: File.open('app/assets/images/default_top_image.jpg'), filename: 'default_top_image.jpg')
     end
   end
-
-  def circle_member?(current_user)
-    self.affiliations.pluck(:user_id).include?(current_user.id)
-  end
 end
