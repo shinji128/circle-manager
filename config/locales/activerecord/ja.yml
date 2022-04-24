@@ -1,5 +1,15 @@
 ja:
   activerecord:
+    models:
+        user: ユーザー
+        authentication: 認証
+        circle: サークル
+        event: イベント
+        circle_role: サークル内の役割
+        event_role: イベントでの役割
+        affiliation: 所属サークル
+        attendance: イベント出欠
+        match: 対戦組み合わせ
     attributes:
       user:
         name: ユーザー名

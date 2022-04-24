@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 2022_03_28_144352) do
     t.string "uuid", null: false
     t.string "line_user_id", null: false
     t.string "name"
+    t.integer "role", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["line_user_id", "uuid"], name: "index_users_on_line_user_id_and_uuid", unique: true

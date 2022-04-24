@@ -13,6 +13,8 @@ class User < ApplicationRecord
   before_create :default_avatar
   before_update :default_avatar
 
+  enum role: { general: 0, admin: 1 }
+
   def default_avatar
     if !avatar.attached?
       avatar.attach(io: File.open('app/assets/images/default_avatar.jpg'), filename: 'avatar_image.jpg')
