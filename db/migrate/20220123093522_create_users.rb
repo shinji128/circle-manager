@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :uuid, null: false
       t.string :line_user_id, null: false
       t.string :name
+      t.integer :role, null: false, default: 0
 
       t.timestamps
     end
