@@ -42,12 +42,8 @@ class AffiliationsController < ApplicationController
 
   def edit
     @circle = Circle.find(params[:circle_id])
-    if @circle.circle_member?(current_user)
-      @affiliation = @circle.affiliations.find_by(user_id: current_user.id)
-      @user = @affiliation.user
-    else
-      redirect_to circle_path(@circle)
-    end
+    @affiliation = @circle.affiliations.find_by(user_id: current_user.id)
+    @user = @affiliation.user
   end
 
   def update
@@ -67,6 +63,13 @@ class AffiliationsController < ApplicationController
       @affiliation.update(circle_state: 1)
     end
     redirect_to circle_affiliations_path(@circle)
+  end
+
+  def destroy
+    circle = Circle.find(params[:circle_id])
+    affiliation = @circle.affiliations.find_by(user_id: current_user.id)
+    affiliation.destroy!
+    redirect_to root_path, notice: 'サークルを退会しました'
   end
 
   def circle_admin_retire

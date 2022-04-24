@@ -8,7 +8,7 @@
             div.flex.font-semibold.text-xl.mr-3
               = affiliation.user.name
             - if affiliation.user == current_user
-              = link_to '編集', edit_circle_affiliation_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
+              = link_to '編集', edit_circle_affiliation_path(@circle), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
             - if current_user.circle_admin?(affiliation.circle) && affiliation.general?
               = link_to '管理者に任命', circle_admin_assign_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
             - if current_user.circle_admin?(affiliation.circle) && affiliation.admin?
