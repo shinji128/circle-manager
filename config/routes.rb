@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resource :matches, only: %i[create show edit update destroy show]
     end
     resource :affiliation, only: %i[edit update]
+    resource :affiliations, only: %i[destroy]
     resources :affiliations, only: %i[index]
     resources :circle_roles, only: %i[new create destroy]
   end
