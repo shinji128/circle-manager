@@ -1,0 +1,16 @@
+.court
+  .court-lh
+    .lhup
+      .fixed-player
+        = match.attendance_user(match.user_a).name
+    .lhlo
+      .fixed-player
+        = match.attendance_user(match.user_b).name
+  .court-center
+  .court-rh
+    .rhup
+      .fixed-player
+        = match.attendance_user(match.user_c).name
+    .rhlo
+      .fixed-player
+        = match.attendance_user(match.user_d).name

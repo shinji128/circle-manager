@@ -5,6 +5,7 @@ class CreateMatches < ActiveRecord::Migration[6.1]
       t.integer :user_b
       t.integer :user_c
       t.integer :user_d
+      t.integer :state, null: false, default: 0
       t.references :event, null: false, foreign_key: true
 
       t.timestamps
