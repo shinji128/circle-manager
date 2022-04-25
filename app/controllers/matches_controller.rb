@@ -2,52 +2,54 @@ class MatchesController < ApplicationController
 
   def create
     event = Event.find(params[:event_id])
-
+    event.matches.unfixed.destroy_all
     # コート数を受け取る
-    play_num = params[:match][:play_num]
-
+    court_num = params[:match][:court_num]
     # コートの数が0またはコートが余ってしまった時にエラーを吐き出す JSでコート数が適切な場合のみボタンを有効化する？
-    if 4 * play_num.to_i > event.attendances.absent.count
+    if 4 * court_num.to_i > event.attendances.absent.count
       flash[:alert] = 'コート数を減らしてください'
-      redirect_to circle_event_matches_path(event.circle, event)
-    elsif play_num.to_i == 0
+      redirect_to event_matches_path(event)
+    elsif court_num.to_i == 0
       flash[:alert] = 'コート数を入力してください'
-      redirect_to circle_event_matches_path(event.circle, event)
+      redirect_to event_matches_path(event)
     else
+      # 組み合わせ作成
+      matches = event.matches_make.shuffle
+      match = matches.sample
 
-      # 現在の組み合わせを削除
-      event.matches.destroy_all
-
-      # ペアを作成
-      member = event.attendances.absent.pluck(:user_id)
-      pairs = member.combination(2).to_a
-
-      # 試合の組み合わせを作成 一つの試合でユーザーが重複しないように
-      round_robin = []
-      pairs.combination(2).to_a.each do |i|
-        if i.flatten.uniq.count == 4
-          round_robin << [i[0][0], i[0][1], i[1][0], i[1][1]]
-        end
+      if event.matches.empty?
+        event.matches.create(state: 0, user_a: match[0], user_b: match[1], user_c: match[2], user_d: match[3])
       end
-      match = round_robin.shuffle.first
-
-      #過去に試合同じ試合の組み合わせがあるか確認、なければ作成
-      if event.check_duplication_match_result(match)
-        event.matches.create(event_id: event.id, user_a: match[0], user_b: match[1], user_c: match[2], user_d: match[3])
-      end
-
-      #過去の試合、現在の試合、現在の試合のユーザーで重複した組み合わせがなければ試合を作成
-      loop do
-        if play_num.to_i == event.matches.count
+      matches.each do |m|
+        if court_num.to_i == event.matches.unfixed.count
           break
         end
-        match = round_robin.shuffle.first
-        if event.check_duplication_match(match) && event.check_duplication_member(match) && event.check_duplication_match_result(match)
-          event.matches.create(event_id: event.id, user_a: match[0], user_b: match[1], user_c: match[2], user_d: match[3])
+        if event.check_duplication_match(m) && event.check_duplication_member(m)
+          event.matches.create(state: 0, user_a: m[0], user_b: m[1], user_c: m[2], user_d: m[3])
         end
       end
       flash[:notice] = 'シャッフルしました'
-      redirect_to circle_event_matches_path(event.circle, event)
+      redirect_to event_matches_path(event)
+    end
+  end
+
+  def match_fixed
+    event = Event.find(params[:event_id])
+    if params[:match].nil?
+      flash[:alert] = '未確定の試合が存在しません'
+      redirect_to event_matches_path(event)
+    else
+      event.matches.fixed.update(state: 2)
+      event.matches.unfixed.destroy_all
+      params[:match][:matches].each do |i|
+        user_a = event.attendances.absent.find(i['user_a']).user.id
+        user_b = event.attendances.absent.find(i['user_b']).user.id
+        user_c = event.attendances.absent.find(i['user_c']).user.id
+        user_d = event.attendances.absent.find(i['user_d']).user.id
+        event.matches.create(state: 1, user_a: user_a, user_b: user_b, user_c: user_c, user_d: user_d)
+      end
+      flash[:notice] = '試合を確定しました'
+      redirect_to event_matches_path(event)
     end
   end
 
@@ -55,12 +57,12 @@ class MatchesController < ApplicationController
     @event = Event.find(params[:event_id])
     @members = []
     @event.attendances.absent.each do |m|
-      if !@event.match_array.flatten.include?(m.user_id)
+      if !@event.match_unfixed_array.flatten.include?(m.user_id)
         @members << m
       end
     end
     @matches = @event.matches.includes(:event)
-    @match_results = @event.match_results.new
-    @play_num = @event.matches.new
+    @match = @event.matches.new
+    @court_num = @event.matches.new
   end
 end

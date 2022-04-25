@@ -3,7 +3,6 @@ class Event < ApplicationRecord
   has_many :event_roles, dependent: :destroy
   has_many :attendances, dependent: :destroy
   has_many :matches, dependent: :destroy
-  has_many :match_results, dependent: :destroy
 
   validates :name, presence: true
 
@@ -19,32 +18,25 @@ class Event < ApplicationRecord
     end
   end
 
-  #現在の試合の中でユーザーが重複していないか確認
-  def check_duplication_member(match)
-    match_check = self.match_array.flatten
-    match.each do |m|
-      match_check = match_check - [m]
+  def match_unfixed_array
+    match_set = []
+    self.matches.unfixed.each do |m|
+      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
     end
-    match_check.count == self.match_array.flatten.count
+    match_set
   end
 
-  #現在の試合の中で試合が重複していないか確認
-  def check_duplication_match(match)
-    match_check = [match[0], match[1], match[2], match[3]]
-    self.match_array.count == (self.match_array - match_check).count
-  end
-
-  #過去の試合と重複していないか確認
-  def check_duplication_match_result(match)
-    if !self.match_results.empty?
-      match_check = [match[0], match[1], match[2], match[3]]
-      !self.match_result_array.include?(match_check)
-    else
-      true
+  def match_fixed_array
+    match_set = []
+    self.matches.fixed.each do |m|
+      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
     end
+    self.matches.past.each do |m|
+      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
+    end
+    match_set
   end
 
-  #二次元配列で現在の試合を配列化
   def match_array
     match_set = []
     self.matches.each do |m|
@@ -53,13 +45,19 @@ class Event < ApplicationRecord
     match_set
   end
 
-  #二次元配列で過去の試合を配列化
-  def match_result_array
-    match_set = []
-    self.match_results.each do |m|
-      match_set << [m.user_a, m.user_b, m.user_c, m.user_d]
+  #試合が重複していないか確認
+  def check_duplication_match(match)
+    match_check = [match[0], match[1], match[2], match[3]]
+    !self.match_array.include?(match_check)
+  end
+
+  #現在の試合の中でユーザーが重複していないか確認
+  def check_duplication_member(match)
+    match_check = self.match_unfixed_array.flatten
+    match.each do |m|
+      match_check = match_check - [m]
     end
-    match_set
+    match_check.count == self.match_unfixed_array.flatten.count
   end
 
   #viewsで使用 eventに紐付いたidを表示
@@ -69,11 +67,23 @@ class Event < ApplicationRecord
 
   #viewsで使用 ユーザーの試合回数を算出
   def match_count(user)
-    self.match_result_array.flatten.count(user.user_id)
+    self.match_fixed_array.flatten.count(user.user_id)
   end
 
   #viewsで使用 ユーザーの試合回数を算出
   def match_count_player(user)
-    self.match_result_array.flatten.count(user)
+    self.match_fixed_array.flatten.count(user)
+  end
+
+  def matches_make
+    member = self.attendances.absent.pluck(:user_id)
+    pairs = member.combination(2).to_a
+    round_robin = []
+    pairs.combination(2).to_a.each do |i|
+      if i.flatten.uniq.count == 4
+        round_robin << [i[0][0], i[0][1], i[1][0], i[1][1]]
+      end
+    end
+    round_robin
   end
 end
