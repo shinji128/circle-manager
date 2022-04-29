@@ -23,6 +23,12 @@ class OauthsController < ApplicationController
     end
   end
 
+  def guest_login
+    guest_user = User.find(2)
+    auto_login(guest_user)
+    redirect_to root_path, :notice => 'ゲストとしてログインしました'
+  end
+
   def destroy
     logout
     redirect_to root_path, notice: 'ログアウトしました'
