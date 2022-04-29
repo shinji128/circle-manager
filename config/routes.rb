@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   post 'circle/:uuid/affiliations' => 'affiliations#create', :as => :circle_affiliation
   get 'event/:id/shuffle' => 'events#shuffle', :as => :shuffle
   post 'event/:event_id/match' => 'matches#match_fixed', :as => :match_fixed
+  get 'event/:circle_id/match/destroy' => 'matches#destroy', :as => :match_delete
   get 'circle/:circle_id/affiliation/:id/assign' => 'affiliations#circle_admin_assign', :as => :circle_admin_assign
   get 'circle/:circle_id/affiliation/:id/retire' => 'affiliations#circle_admin_retire', :as => :circle_admin_retire
 
