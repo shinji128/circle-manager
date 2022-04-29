@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'static_pages#top'
+  get 'privacy_policy' => 'static_pages#privacy_policy', :as => :privacy_policy
   post 'callback' => 'users#callback'
   post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback'
