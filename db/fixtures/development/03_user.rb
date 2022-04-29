@@ -1,5 +1,5 @@
 User.seed(
-  { id: 2, name: '田中', line_user_id: "46cf988b-8d5f" },
+  { id: 2, name: 'ゲスト', line_user_id: "46cf988b-8d5f" },
   { id: 3, name: '鈴木', line_user_id: "5f6ee1df-b5da" },
   { id: 4, name: '坂本', line_user_id: "a56ebf02-0a6f" },
   { id: 5, name: '斎藤', line_user_id: "5f3152e3-0d32" },

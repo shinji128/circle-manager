@@ -7,11 +7,9 @@
         li
           = link_to 'トップページ', root_path
         li
-          a href="#"  サークル一覧
+          = link_to t('circles.index.title'), circles_path
         li
-          a href="#"  イベント一覧
-        / li
-          / a href="#"  チームシャッフル
+          = link_to 'ゲストログイン', guest_login_path
   .toggle_btn
     span
     span

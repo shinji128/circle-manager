@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback'
   get 'oauth/:provider'=> 'oauths#oauth', :as => :auth_at_provider
+  get 'guest_login', to: 'oauths#guest_login', :as => :guest_login
   delete 'logout', to: 'oauths#destroy', :as => :logout
   get 'circle/:id/events' => 'events#circle_events', :as => :circle_event_list
   get 'circle/:uuid/affiliations' => 'affiliations#new', :as => :new_circle_affiliation
