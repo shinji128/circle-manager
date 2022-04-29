@@ -59,6 +59,8 @@
           = member.user.name
           #attendance-id.hidden
             = @event.player_attendance_id(member).id
+  .text-center.mt-10
+    = link_to 'リセット', match_delete_path(@event), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', data: { confirm: t('defaults.message.delete_confirm') }
 
 - if current_user.circle_admin?(@event.circle)
   = render 'circles/circle_admin_footer', circle: @event.circle
