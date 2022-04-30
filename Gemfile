@@ -26,6 +26,7 @@ gem 'rails_admin', '~> 3.0'
 gem 'rails_admin-i18n'
 gem 'cancancan'
 gem 'seed-fu'
+gem 'meta-tags'
 
 group :development, :test do
   gem 'bullet' # N+1検知
