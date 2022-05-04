@@ -1,9 +1,14 @@
 .flex-row.flex-col.h-screen.bg-gray-200.px-4.py-5
   .mx-auto.container
     .focus:outline-none.mt-12.lg:mt-24 aria-label=("Group of cards") tabindex="0"
-      div
-        - if @circles.present?
-          .grid.sm:grid-cols-1.lg:grid-cols-3.gap-8
-            = render @circles
-        - else
-          p 表示できるサークルが存在しません
+      .border-l-4.border-green-500
+        .ml-3
+          .font-bold.text-xl
+            | サークルリスト
+          .text-sm
+            | ※公開状態に設定されているを表示しています
+      - if @circles.present?
+        .grid.sm:grid-cols-1.lg:grid-cols-3.gap-8
+          = render @circles
+      - else
+        p.mt-3 表示できるサークルが存在しません

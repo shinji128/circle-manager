@@ -21,7 +21,7 @@ class CirclesController < ApplicationController
 
   def edit
     @circle = Circle.find(params[:id])
-    redirect_to circle_path(@circle) if current_user.circle_admin?(@circle)
+    redirect_to circle_path(@circle) if !current_user.circle_admin?(@circle)
   end
 
   def update
