@@ -6,8 +6,10 @@
     = link_to '編集', edit_mypage_path, class: 'bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'
   - if @circles.present?
     .px-2.py-2
-      h2.text-xl.underline
-       p 参加サークル一覧
+      .border-l-4.border-green-500
+        .ml-3
+          .font-bold.text-xl
+            | 参加サークルリスト
       .mx-auto.container.mt-2
         .focus:outline-none aria-label=("Group of cards") tabindex="0"
           div
