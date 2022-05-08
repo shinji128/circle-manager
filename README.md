@@ -48,8 +48,7 @@
   <br>
 
   ## ER図
-  <img width="555" alt="hoshime_erd" src="https://user-images.githubusercontent.com/76583053/147761791-8d12b707-d2fa-4e65-9463-87e5c5bbc570.png">
-
+<img width="1000" alt="erdrow" src="https://user-images.githubusercontent.com/81057658/167300438-0bfb4921-85d3-4018-9f46-4672bf9e3d9c.png">
   <br>
 
   ### 使用技術
@@ -63,6 +62,3 @@
   - CSS(SCSS)
   - Tailwind CSS
   - JavaScript
-
-## ER図
-<img width="1000" alt="erdrow" src="https://user-images.githubusercontent.com/81057658/167300438-0bfb4921-85d3-4018-9f46-4672bf9e3d9c.png">
