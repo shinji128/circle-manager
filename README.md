@@ -48,7 +48,7 @@
   <br>
 
   ## ER図
-<img width="1000" alt="erdrow" src="https://user-images.githubusercontent.com/81057658/167300438-0bfb4921-85d3-4018-9f46-4672bf9e3d9c.png">
+<img width="500" alt="erdrow" src="https://user-images.githubusercontent.com/81057658/167300438-0bfb4921-85d3-4018-9f46-4672bf9e3d9c.png">
   <br>
 
   ### 使用技術
