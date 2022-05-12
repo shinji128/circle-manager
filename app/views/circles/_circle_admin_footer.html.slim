@@ -2,7 +2,7 @@ footer.bg-gray-600.sticky.bottom-0
   .text-center.text-white
     - if circle.affiliation_user.include?(current_user)
       .grid.grid-cols-5.divide-x-0.divide-gray-400
-        .text-center.text-indigo-300
+        .text-center.text-beach-100
           .hidden
             input#copyTarget readonly="readonly" style=("width:100%; box-sizing:border-box") type="text" value="#{new_circle_affiliation_url(circle.uuid)}"
           button#btn-invite

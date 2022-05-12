@@ -1,18 +1,29 @@
 = image_tag asset_path('top_image.png'), class: 'w-full'
+.mt-10.flex.justify-center.mx-auto
+  = link_to auth_at_provider_path(:provider => :line), class: 'bg-green-400 text-white font-bold py-2 px-4 rounded-md flex justify-center' do
+    i.fab.fa-line.fa-2x
+    span.my-auto.ml-2 ログイン
 .bg-white.py-10.px-5
-  .text-lg.font-bold.text-center.underline
+  .text-2xl.text-center.underline.mb-5
     | シャッフル機能搭載!!
+  .flex.justify-center.mb-5
+    = image_tag asset_path('movie_shuffle.gif'), class: 'border-solid border-2 border-black w-56'
   .text-base.mb-5
     p ・シャッフル後に確定ボタンで組み合わせ確定
     p ・赤丸部分で試合出場回数をカウント
-  .flex.justify-center
-    = image_tag asset_path('movie_shuffle.gif'), class: 'border-solid border-2 border-black w-56'
-.bg-gray-300.py-10.px-5
-  .text-lg.font-bold.text-center.underline
+/ .bg-gray-300.py-10.px-5
+/ .border-b.border-black
+hr
+.bg-white.py-10.px-5
+  .text-2xl.text-center.underline.mb-5
     | まずはサークルを作ろう！
+  .flex.justify-center.mb-5
+    = image_tag asset_path('circle_view.png'), class: 'border-solid border-2 border-black w-56'
   .text-base.mb-5
     p ・サークル設立
     p ・入会希望者をサークルへ招待
     p ・イベント開催
-  .flex.justify-center
-    = image_tag asset_path('circle_view.png'), class: 'border-solid border-2 border-black w-56'
+.mb-10.flex.justify-center.mx-auto
+  = link_to auth_at_provider_path(:provider => :line), class: 'bg-green-400 text-white font-bold py-2 px-4 rounded-md flex justify-center' do
+    i.fab.fa-line.fa-2x
+    span.my-auto.ml-2 ログイン
