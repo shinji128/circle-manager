@@ -1,4 +1,4 @@
-.bg-blue-900.sticky.top-0.text-center.text-white
+header.bg-beach-400.sticky.top-0.z-50.text-center.text-white.text-xl
   = @event.name
 .flex.flex-col.min-h-screen.py-10.px-2.bg-gray-200
   - if @matches.empty?
@@ -33,8 +33,8 @@
       = form_with(model: [@event, @court_num], local: true) do |f|
         .hidden
           = f.number_field :court_num, value: @matches.fixed.count
-        = button_tag type: 'submit', class: "btn-shuffle shuffle-page-button bg-yellow-500 hover:bg-yellow-600" do
-          i.fas.fa-random.fa-lg
+        = button_tag type: 'submit', class: "btn-shuffle shuffle-page-button bg-yellow-500" do
+          i.fas.fa-random.fa-lg.mr-1
           span シャッフル
 
     .text-center.my-auto
@@ -46,9 +46,9 @@
               = i.number_field :user_b, class: 'attendance_input', value: @event.player_attendance_id(m.user_b).id
               = i.number_field :user_c, class: 'attendance_input', value: @event.player_attendance_id(m.user_c).id
               = i.number_field :user_d, class: 'attendance_input', value: @event.player_attendance_id(m.user_d).id
-        = button_tag type: 'submit', class: "py-3 btn-shuffle shuffle-page-button bg-green-500 hover:bg-blue-600" do
-          i.fas.fa-check.fa-lg.mr-3
-          span 確定
+        = button_tag type: 'submit', class: "btn-shuffle shuffle-page-button bg-green-500 px-6" do
+          i.fas.fa-check.fa-lg.mr-1
+          span.mr-1 確定
 
   #members-list.bench
     - @members.each do |member|
