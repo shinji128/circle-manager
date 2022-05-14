@@ -22,7 +22,7 @@ gem 'enum_help'
 gem 'rails-i18n'
 gem "aws-sdk-s3", require: false
 
-gem 'rails_admin', '~> 3.0'
+gem 'rails_admin', '~> 2.0'
 gem 'rails_admin-i18n'
 gem 'cancancan'
 gem 'seed-fu'
