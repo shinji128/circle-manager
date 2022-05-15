@@ -10,14 +10,18 @@ document.addEventListener('turbolinks:load', () => {
     // ドラッグ中のアイテムをカーソルの位置に追従
     const touchElem = event.target;
     const touch = event.changedTouches[0];
-    if (touchElem.className == 'player' || touchElem.className == 'bench-player') {
+    if (touchElem.className == 'player') {
       touchElem.style.position = "fixed";
       touchElem.style.top = (touch.pageY - window.pageYOffset - touchElem.offsetHeight / 2) + "px";
       touchElem.style.left = (touch.pageX - window.pageXOffset - touchElem.offsetWidth / 2) + "px";
-    } else {
+    } else if (touchElem.className == 'player-name'){
       touchElem.parentElement.style.position = "fixed";
       touchElem.parentElement.style.top = (touch.pageY - window.pageYOffset - touchElem.offsetHeight / 2) + "px";
       touchElem.parentElement.style.left = (touch.pageX - window.pageXOffset - touchElem.offsetWidth / 2) + "px";
+    } else {
+      touchElem.parentElement.parentElement.style.position = "fixed";
+      touchElem.parentElement.parentElement.style.top = (touch.pageY - window.pageYOffset - touchElem.offsetHeight / 2) + "px";
+      touchElem.parentElement.parentElement.style.left = (touch.pageX - window.pageXOffset - touchElem.offsetWidth / 2) + "px";
     }
   }
 
@@ -35,6 +39,8 @@ document.addEventListener('turbolinks:load', () => {
     // ドラッグ中の操作のために変更していたスタイルを元に戻す
     if (event.target.className == 'player-name') {
       touchElem = event.target.parentElement
+    } else if (event.target.className == 'shuffle-badge') {
+      touchElem = event.target.parentElement.parentElement
     }
     styleReset(touchElem)
 
@@ -44,6 +50,7 @@ document.addEventListener('turbolinks:load', () => {
     const dropElem = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset)
     const dropParentElem = dropElem.parentElement
     const dropAncestorElem = dropElem.parentElement.parentElement
+    const dropAncestor2Elem = dropElem.parentElement.parentElement.parentElement
 
     if (dropElem.className.includes('court-block')) {
       touchElem.parentElement.appendChild(dropElem.firstElementChild)
