@@ -5,13 +5,17 @@
         = image_tag affiliation.user.avatar.variant(gravity: :center, resize:"100x80^", crop:"100x80+0+0"), class: "focus:outline-none"
         .column
           .flex.text-center.inline-block.align-middle
-            div.flex.font-semibold.text-xl.mr-3
+            div.flex.font-semibold.text-xl
               = affiliation.user.name
             - if affiliation.user == current_user
-              = link_to '編集', edit_circle_affiliation_path(@circle), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
-            - if current_user.circle_admin?(affiliation.circle) && affiliation.general?
-              = link_to '管理者に任命', circle_admin_assign_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
-            - if current_user.circle_admin?(affiliation.circle) && affiliation.admin?
-              = link_to '管理者を勇退', circle_admin_retire_path(@circle, affiliation), class: 'bg-green-500 hover:bg-blue-700 font-bold text-white my-auto px-4 rounded-full text-center'
-          p.mt-1.text-black.text-sm.cursor-pointer.line-clamp-3
+              = link_to edit_circle_affiliation_path(@circle), class: 'text-gray-600 font-bold px-2 rounded-full' do
+                i.far.fa-edit.fa-lg
+            - else
+              - if current_user.circle_admin?(affiliation.circle) && affiliation.general?
+                = link_to circle_admin_assign_path(@circle, affiliation), class: 'text-gray-300 font-bold px-2 rounded-full' do
+                  i.fas.fa-crown.fa-lg
+              - if current_user.circle_admin?(affiliation.circle) && affiliation.admin?
+                = link_to circle_admin_retire_path(@circle, affiliation), class: 'text-yellow-300 font-bold px-2 rounded-full' do
+                  i.fas.fa-crown.fa-lg
+            p.mt-1.text-black.text-sm.cursor-pointer.line-clamp-3
             = affiliation.introduction
