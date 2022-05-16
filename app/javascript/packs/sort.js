@@ -50,7 +50,6 @@ document.addEventListener('turbolinks:load', () => {
     const dropElem = document.elementFromPoint(touch.pageX - window.pageXOffset, touch.pageY - window.pageYOffset)
     const dropParentElem = dropElem.parentElement
     const dropAncestorElem = dropElem.parentElement.parentElement
-    const dropAncestor2Elem = dropElem.parentElement.parentElement.parentElement
 
     if (dropElem.className.includes('court-block')) {
       touchElem.parentElement.appendChild(dropElem.firstElementChild)

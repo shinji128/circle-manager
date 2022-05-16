@@ -2,14 +2,7 @@
 
 .flex-row.flex-col.min-h-screen.py-5.px-2.bg-gray-200
   .mt-10.mb-10.text-center
-    / = link_to edit_event_path(@event), class: 'bg-green-500 text-white font-bold py-2 px-2 rounded-full mr-2' do
-    /   i.fas.fa-pen.fa-lg.mr-1
-    /   span.mr-1 編集
-    / = link_to shuffle_path(@event), class: 'bg-green-500 text-white font-bold py-2 px-4 rounded-full mr-2' do
-    /   i.fas.fa-random.fa-lg.mr-1
-    /   span.mr-1 シャッフル
     = link_to event_matches_path(@event), class: 'bg-beach-200 text-white font-bold py-4 px-2 rounded-full mb-2' do
-      / span.mr-1 試合
       i.fas.fa-fan
       span.ml-1 試合開始
 
