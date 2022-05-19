@@ -11,7 +11,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'net-smtp', require: false
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'image_processing', '~> 1.2'
 gem 'slim-rails'
@@ -20,7 +20,7 @@ gem 'sorcery'
 gem 'active_decorator'
 gem 'enum_help'
 gem 'rails-i18n'
-gem "aws-sdk-s3", require: false
+gem 'aws-sdk-s3', require: false
 
 gem 'rails_admin', '~> 2.0'
 gem 'rails_admin-i18n'
@@ -39,8 +39,8 @@ group :development do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'brakeman' #脆弱性診断 'bundle exec brakeman'
-  gem 'rails_best_practices' #https://github.com/flyerhzm/rails_best_practices
+  gem 'brakeman' # 脆弱性診断 'bundle exec brakeman'
+  gem 'rails_best_practices' # https://github.com/flyerhzm/rails_best_practices
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false

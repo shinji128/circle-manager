@@ -30,14 +30,14 @@ class EventForm
     return false if invalid?
 
     self.event = Event.new(event_params)
-    self.event.uuid = loop do
+    event.uuid = loop do
       uuid = SecureRandom.uuid
       break uuid unless Event.exists?(uuid: uuid)
     end
-    self.event.save
+    event.save
     if event_role
       event_role.each do |i|
-        event.event_roles.create!(name: i["name"], user_id: i["user_id"].to_i)
+        event.event_roles.create!(name: i['name'], user_id: i['user_id'].to_i)
       end
     end
     true
@@ -47,7 +47,7 @@ class EventForm
     ActiveRecord::Base.transaction do
       if event_role.present?
         event_role.each do |i|
-          @event.event_roles.create!(name: i["name"], user_id: i["user_id"].to_i)
+          @event.event_roles.create!(name: i['name'], user_id: i['user_id'].to_i)
         end
       end
       @event.update!(event_params)

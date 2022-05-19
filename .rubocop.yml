@@ -1,157 +1,87 @@
-require:
-  - rubocop-performance
-  - rubocop-rspec
+# inherit_from: .rubocop_todo.yml
 
 AllCops:
-  NewCops: enable
   Exclude:
     - 'vendor/**/*'
-    - 'spec/fixtures/**/*'
-    - 'tmp/**/*'
-    - '.git/**/*'
-    - 'bin/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'spec/**/*'
     - 'node_modules/**/*'
-    - 'config/**/*'
-  TargetRubyVersion: 2.5
+    - 'config/puma.rb'
+    - 'config/spring.rb'
+    - 'config/initializers/backtrace_silencers.rb'
+    - 'config/boot.rb'
+    - 'Rakefile'
+    - 'config/initializers/filter_parameter_logging.rb'
+  DisplayCopNames: true
   SuggestExtensions: false
+  NewCops: enable
 
-Naming/PredicateName:
-  # Method define macros for dynamically generated method.
-  MethodDefinitionMacros:
-    - define_method
-    - define_singleton_method
-    - def_node_matcher
-    - def_node_search
-
-Style/AccessorGrouping:
+Layout/MultilineBlockLayout:
   Exclude:
-    - lib/rubocop/formatter/base_formatter.rb
-    - lib/rubocop/cop/offense.rb
+    - 'spec/**/*_spec.rb'
 
-Style/FormatStringToken:
-  # Because we parse a lot of source codes from strings. Percent arrays
-  # look like unannotated format string tokens to this cop.
-  Exclude:
-    - spec/**/*
+Layout/LineLength:
+  Enabled: false
 
-Style/IpAddresses:
-  # The test for this cop includes strings that would cause offenses
+Metrics/AbcSize:
+  Max: 100
+
+Metrics/BlockLength:
+  Max: 30
   Exclude:
-  - spec/rubocop/cop/style/ip_addresses_spec.rb
+    - 'Gemfile'
+    - 'config/**/*'
+    - 'spec/**/*_spec.rb'
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 300
+
+Metrics/CyclomaticComplexity:
+  Max: 30
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 30
+
+Metrics/PerceivedComplexity:
+  Max: 20
+
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/controllers/**/*'
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
 
-Layout/EndOfLine:
-  EnforcedStyle: lf
-
-Layout/ClassStructure:
-  Enabled: true
-
-Layout/RedundantLineBreak:
-  Enabled: true
-
-Layout/TrailingWhitespace:
-  AllowInHeredoc: false
-
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Layout/HashAlignment:
-  EnforcedHashRocketStyle:
-    - key
-    - table
-  EnforcedColonStyle:
-    - key
-    - table
-
-Layout/LineLength:
-  Max: 100
-  IgnoredPatterns:
-    - !ruby/regexp /\A +(it|describe|context|shared_examples|include_examples|it_behaves_like) ["']/
-
-Lint/InterpolationCheck:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Lint/UselessAccessModifier:
-  MethodCreatingMethods:
-    - 'def_matcher'
-    - 'def_node_matcher'
-
-Lint/BooleanSymbol:
+Style/FrozenStringLiteralComment:
   Enabled: false
 
-Metrics/BlockLength:
-  Max: 40
-  Exclude:
-    - 'Rakefile'
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-    - '**/*.gemspec'
-
-Metrics/ClassLength:
-  Exclude:
-    - lib/rubocop/config_obsoletion.rb
-
-Metrics/ModuleLength:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Metrics/AbcSize:
-  Enabled: true
-  Max: 20
-
-Metrics/MethodLength:
-  Max: 14
-
-Naming/InclusiveLanguage:
-  FlaggedTerms:
-    offence:
-      Suggestions:
-        - offense
-  Exclude:
-    - lib/rubocop/cop/naming/inclusive_language.rb
-
-RSpec/FilePath:
-  Exclude:
-    - spec/rubocop/cop/internal_affairs/redundant_let_rubocop_config_new_spec.rb
-    - spec/rubocop/formatter/junit_formatter_spec.rb
-
-RSpec/PredicateMatcher:
-  EnforcedStyle: explicit
-
-RSpec/MessageSpies:
-  EnforcedStyle: receive
-
-RSpec/NestedGroups:
-  Max: 7
-
-RSpec/MultipleMemoizedHelpers:
+Style/IfUnlessModifier:
   Enabled: false
 
-Performance/CollectionLiteralInLoop:
-  Exclude:
-    - 'Rakefile'
-    - 'spec/**/*.rb'
-
-Performance/EndWith:
-  SafeMultiline: false
-
-Performance/StartWith:
-  SafeMultiline: false
-
-RSpec/StubbedMock:
+Style/WhileUntilModifier:
   Enabled: false
 
-InternalAffairs/ExampleDescription:
-  Include:
-    - 'spec/rubocop/cop/**/*.rb'
+Style/HashEachMethods:
+  Enabled: false
 
-InternalAffairs/UndefinedConfig:
-  Include:
-    - 'lib/rubocop/cop/**/*.rb'
-  Exclude:
-    - 'lib/rubocop/cop/correctors/**/*.rb'
-    - 'lib/rubocop/cop/mixin/**/*.rb'
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false

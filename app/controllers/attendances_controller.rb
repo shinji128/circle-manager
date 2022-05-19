@@ -18,6 +18,7 @@ class AttendancesController < ApplicationController
   end
 
   private
+
   def attendance_params
     params.require(:attendance).permit(:state, :comment).merge(event_id: @event.id)
   end
