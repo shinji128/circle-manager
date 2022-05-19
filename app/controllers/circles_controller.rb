@@ -21,7 +21,7 @@ class CirclesController < ApplicationController
 
   def edit
     @circle = Circle.find(params[:id])
-    redirect_to circle_path(@circle) if !current_user.circle_admin?(@circle)
+    redirect_to circle_path(@circle) unless current_user.circle_admin?(@circle)
   end
 
   def update
@@ -55,7 +55,7 @@ class CirclesController < ApplicationController
   end
 
   def destroy
-    circle =Circle.find(params[:id])
+    circle = Circle.find(params[:id])
     redirect_to circle_path(circle) if current_user.circle_admin?(circle)
     circle.destroy!
     redirect_to root_path, notice: 'サークルを削除しました'

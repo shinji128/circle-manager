@@ -1,5 +1,4 @@
 module UuidGenerator
-
   def self.included(uuid)
     uuid.before_create :generate_uuid
   end

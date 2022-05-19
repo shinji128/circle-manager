@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def not_authenticated
     flash[:warning] = t('defaults.message.require_login')
-    redirect_to main_app.auth_at_provider_path(:provider => :line)
+    redirect_to main_app.auth_at_provider_path(provider: :line)
   end
 
   if Rails.env.production?

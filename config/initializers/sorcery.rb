@@ -113,7 +113,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.line.callback_url = 'http://localhost:3000//oauth/callback?provider=line'
   config.line.bot_prompt = 'aggressive'
   config.line.scope = 'profile'
-  config.line.user_info_mapping = {line_user_id: 'userId', name: 'displayName'}
+  config.line.user_info_mapping = { line_user_id: 'userId', name: 'displayName' }
   # --- user config ---
   config.user_config do |user|
     # -- core --
@@ -436,5 +436,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "User"
+  config.user_class = 'User'
 end

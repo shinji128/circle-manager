@@ -1,12 +1,11 @@
 class MatchesController < ApplicationController
-
   def create
     event = Event.find(params[:event_id])
     event.matches.unfixed.destroy_all
     court_num = params[:match][:court_num]
     if 4 * court_num.to_i > event.attendances.absent.count
       redirect_to event_matches_path(event), alert: 'コート数を減らしてください'
-    elsif court_num.to_i == 0
+    elsif court_num.to_i.zero?
       redirect_to event_matches_path(event), alert: 'コート数を入力してください'
     else
       matches = event.matches_make.shuffle
@@ -18,6 +17,7 @@ class MatchesController < ApplicationController
         if court_num.to_i == event.matches.unfixed.count
           break
         end
+
         if event.check_duplication_match(m) && event.check_duplication_member(m)
           event.matches.create(state: 0, user_a: m[0], user_b: m[1], user_c: m[2], user_d: m[3])
         end
@@ -48,7 +48,7 @@ class MatchesController < ApplicationController
     @event = Event.find(params[:event_id])
     @members = []
     @event.attendances.absent.each do |m|
-      if !@event.match_unfixed_array.flatten.include?(m.user_id)
+      unless @event.match_unfixed_array.flatten.include?(m.user_id)
         @members << m
       end
     end

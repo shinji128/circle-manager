@@ -9,7 +9,7 @@ class CircleRolesController < ApplicationController
   def create
     role_params = params[:circle_role][:circle_role_attributes]
     role_params.each do |role|
-      @circle.circle_roles.create!(name: role['name']) if !role['name'].blank?
+      @circle.circle_roles.create!(name: role['name']) unless role['name'].blank?
     end
     redirect_to new_circle_circle_role_path(@circle)
   end
@@ -20,11 +20,10 @@ class CircleRolesController < ApplicationController
     redirect_to new_circle_circle_role_path(@circle), notice: '役割を削除しました'
   end
 
-private
+  private
 
   def set_circle
     @circle = Circle.find(params[:circle_id])
-    redirect_to circle_path(@circle) if !current_user.circle_member?(@circle)
+    redirect_to circle_path(@circle) unless current_user.circle_member?(@circle)
   end
-
 end
