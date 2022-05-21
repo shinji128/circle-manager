@@ -42,10 +42,10 @@ header.bg-beach-400.sticky.top-0.z-50.text-center.text-white.text-xl
         .hidden
           - @matches.unfixed.each do |m|
             = f.fields_for 'matches[]', Match.new, {} do |i|
-              = i.number_field :user_a, class: 'attendance_input', value: @event.player_attendance_id(m.user_a).id
-              = i.number_field :user_b, class: 'attendance_input', value: @event.player_attendance_id(m.user_b).id
-              = i.number_field :user_c, class: 'attendance_input', value: @event.player_attendance_id(m.user_c).id
-              = i.number_field :user_d, class: 'attendance_input', value: @event.player_attendance_id(m.user_d).id
+              = i.number_field :user_a, class: 'attendance_input', value: @event.player_attendance_id(m.user_a)
+              = i.number_field :user_b, class: 'attendance_input', value: @event.player_attendance_id(m.user_b)
+              = i.number_field :user_c, class: 'attendance_input', value: @event.player_attendance_id(m.user_c)
+              = i.number_field :user_d, class: 'attendance_input', value: @event.player_attendance_id(m.user_d)
         = button_tag type: 'submit', class: "btn-shuffle shuffle-page-button bg-green-500 px-6" do
           i.fas.fa-check.fa-lg.mr-1
           span.mr-1 確定
@@ -58,7 +58,7 @@ header.bg-beach-400.sticky.top-0.z-50.text-center.text-white.text-xl
             = @event.match_count(member)
           = member.user.name
           #attendance-id.hidden
-            = @event.player_attendance_id(member).id
+            = @event.member_attendance_id(member)
   .text-center.mt-10
     = link_to 'リセット', match_delete_path(@event), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', data: { confirm: t('defaults.message.delete_confirm') }
 
