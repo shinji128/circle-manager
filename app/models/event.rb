@@ -61,8 +61,8 @@ class Event < ApplicationRecord
   end
 
   # viewsで使用 eventに紐付いたidを表示
-  def player_attendance_id(player)
-    attendances.absent.find_by(user_id: player)
+  def player_attendance_id(member)
+    attendances.absent.find_by(user_id: member.user_id)
   end
 
   # viewsで使用 ユーザーの試合回数を算出
