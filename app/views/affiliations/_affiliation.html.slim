@@ -8,7 +8,7 @@
             div.flex.font-semibold.text-xl
               = affiliation.user.name
             - if affiliation.user == current_user
-              = link_to edit_circle_affiliation_path(@circle), class: 'text-gray-600 font-bold px-2 rounded-full' do
+              = link_to edit_affiliation_path(affiliation.id), class: 'text-gray-600 font-bold px-2 rounded-full' do
                 i.far.fa-edit.fa-lg
             - else
               - if current_user.circle_admin?(affiliation.circle) && affiliation.general?
