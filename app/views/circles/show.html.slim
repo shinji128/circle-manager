@@ -35,7 +35,8 @@
           span.carousel-control-next-icon.inline-block.bg-no-repeat aria-hidden="true"
           span.visually-hidden Next
 
-- if current_user.circle_admin?(@circle)
-  = render 'circle_admin_footer', circle: @circle
-- else
-  = render 'circle_general_footer', circle: @circle
+- if logged_in?
+  - if current_user.circle_admin?(@circle)
+    = render 'circle_admin_footer', circle: @circle
+  - else
+    = render 'circle_general_footer', circle: @circle
