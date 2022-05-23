@@ -22,7 +22,6 @@ Rails.application.routes.draw do
     resources :events, only: %i[new create] do
       resources :attendances, only: %i[new create update]
     end
-    resource :affiliation, only: %i[edit update]
     resource :affiliations, only: %i[destroy]
     resources :affiliations, only: %i[index]
     resources :circle_roles, only: %i[new create destroy]
@@ -31,5 +30,5 @@ Rails.application.routes.draw do
     resource :matches, only: %i[create show destroy]
   end
   resource :mypage, only: %i[show edit update]
-  resources :affiliations, only: %i[show]
+  resources :affiliations, only: %i[show edit update]
 end

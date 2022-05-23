@@ -9,11 +9,11 @@
         .flex.flex-wrap
           .w-full.px-4
             .relative.w-full.mb-5
-              = form_with model: @affiliation, url: circle_affiliation_path(@circle), local: true do |f|
+              = form_with model: @affiliation, local: true do |f|
                 = render 'shared/error_messages', object: f.object
                 .flex.relative.w-full.mb-0.py-2
                   = f.label :introduction
                 = f.text_area :introduction, class: "form-control", style: "height: 91px;"
                 .flex.justify-between
                   = f.submit t('.submit'), class: "form-submit active:bg-yellow-200 focus:ring-yellow-300"
-                  = link_to '退会', circle_affiliations_path(@circle), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', method: :delete, data: { confirm: t('defaults.message.delete_confirm') }
+                  = link_to '退会', circle_affiliations_path(@affiliation.circle), class: 'bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md', method: :delete, data: { confirm: t('defaults.message.delete_confirm') }
